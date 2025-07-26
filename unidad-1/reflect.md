@@ -16,20 +16,26 @@ __Parte 1: recuperación de conocimiento__
    - En la fase de Fetch se cargan los datos del programa a la ROM, en Decode se interpreta esa información del programa y en Execute se realizan las acciones y los movimientos de memoria que indica el programa.
    - El PC toma parte en la parte de Execute, pues indica que instrucción se va a ejecutar a continuación.
 
-3) __¿Cuál es la diferencia fundamental entre una instrucción-A (que empieza con @) y una instrucción-C (que involucra D, M, A, etc.) en el lenguaje ensamblador de Hack? Da un ejemplo de cada una.__
+2) __¿Cuál es la diferencia fundamental entre una instrucción-A (que empieza con @) y una instrucción-C (que involucra D, M, A, etc.) en el lenguaje ensamblador de Hack? Da un ejemplo de cada una.__
 
    - La instrucción A la veo como si fuera un indicador de que espacio de memoria se va a modificar o referirse, sin embargo sirve varios propósitos. ej. @KBD.
    - Las instruciones tipo B se refiere a las operaciones que se realizan con los valores de D, M, A. ej. D=D+A.
 
-5) __Explica la función de los siguientes componentes del computador Hack: el registro D, el registro A y la ALU.__
+3) __Explica la función de los siguientes componentes del computador Hack: el registro D, el registro A y la ALU.__
 
-6) __¿Cómo se implementa un salto condicional en Hack? Describe un ejemplo (p. ej., saltar si el valor de D es mayor que cero).__
+   - __Registro A:__ Funciona como un indicador del espacio de memoria que se va a utilizar, puede ser utilizado como una variable y define a donde se hacen los saltos.
+   - __Registro D:__ Funciona como una variable y es la condición con lo que se realizan ifs
+   - __ALU:__ Es lo que se encarga de las operaciones que se hacen entre D, A y M[A].
 
-7) __¿Cómo se implementa un loop en el computador Hack? Describe un ejemplo (p. ej., un loop que decremente un valor hasta que llegue a cero).__
+4) __¿Cómo se implementa un salto condicional en Hack? Describe un ejemplo (p. ej., saltar si el valor de D es mayor que cero).__
 
-8) __¿Cuál es la diferencia entre la instrucción D=M y la instrucción M=D?__
+    - Los saltos condicionales se implementan con las expresiones de tipo D;JXX, donde compara el valor de D con 0, si es igual, diferente, mayor o igual, menor o igual, etc.
 
-9) __Describe brevemente qué se necesita para leer un valor del teclado (KBD) y para “pintar” un pixel en la pantalla (SCREEN).__
+5) __¿Cómo se implementa un loop en el computador Hack? Describe un ejemplo (p. ej., un loop que decremente un valor hasta que llegue a cero).__
+
+6) __¿Cuál es la diferencia entre la instrucción D=M y la instrucción M=D?__
+
+7) __Describe brevemente qué se necesita para leer un valor del teclado (KBD) y para “pintar” un pixel en la pantalla (SCREEN).__
 
 ___
 
