@@ -71,10 +71,20 @@ ___
 
 1) __Continuar: ¿Qué aspecto de las actividades, las explicaciones o la dinámica de la clase te ha resultado más útil o te ha gustado más y debería seguir haciendo?__
 
+ - Me ha gustado mucho que el trabajo sea autónomo y no necesariamente se tenga que acabar en la clase, personalmente esos dos aspectos me agradan mucho por que es un espacio amplio para poder sacar mis propias conclusiones sobre lo que estemos viendo, incluso si me tardo mucho.
+
 2) __Dejar de hacer: ¿Qué aspecto de la unidad te ha resultado confuso, poco útil o frustrante? ¿Hay algo que crees que debería eliminar o cambiar drásticamente?__
+
+ - Me gustaría que no hubiera actividades de apply que el profe haga en clase, sino que trabaje con ejemplos aparte y que las actividades sean para que se hagan individualmente.
 
 3) __Empezar a hacer: ¿Qué te habría gustado que hiciéramos que no hicimos? ¿Tienes alguna idea para una actividad o un recurso que podría mejorar el aprendizaje en la próxima unidad?__
 
+ - lo que dije en el numeral 2. 
+
 4) __Ritmo y Dificultad: en una escala del 1 (muy fácil/lento) al 5 (muy difícil/rápido), ¿Cómo calificarías el ritmo y la dificultad general de esta unidad? ¿Por qué?__
 
+ - 3, las explicaciones y las actividades me parecieron de una dificultad adecuada y el ritmo estuvo excelente.
+
 5) __Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?__ 
+
+ - nop 🐟
