@@ -65,6 +65,30 @@ __Parte 2: reflexión sobre tu proceso__
 
     - leer la documentación. 
 ___
+
+### 🐟 Actividad 8 🐟
+
+🌱 ACTIVIDAD 1: [5]/5
+Comentarios:
+> 🐟 Hay un error pequeño en la explicación de la función de fetch donde se menciona que "es la forma del computador de entender las instrucciones que recibe." 
+> Esto es incorrecto, es parte de la descripción del ciclo decode. Sin embargo, el ejercicio no está contando en la rúbrica.
+> 🐠 El análisis del primer programa es completo, correcto y específico. El programa del experimento 2 funciona correctamente, y la explicación de diferencia entre memoria RAM y ROM es clara y precisa.
+
+🌿 ACTIVIDAD 2: [5]/5
+Comentarios:
+> 🐟 El análisis del programa es detallado y demuestra un proceso consciente de interpretación. Se relacionan correctamente los conceptos explicados en la documentación con la práctica. Las respuestas a las preguntas son claras, específicas y bien ejemplificadas.
+
+=======================
+
+🌱 ACTIVIDAD 3: [5]/5
+Comentarios:
+> 🐟 El programa es completo y preciso. Explica de manera simple el funcionamiento, analiza las dificultades que se presentaron en el desarrollo y va un paso más allá creando un programa adicional con mayor nivel de interacción.
+
+🌿 ACTIVIDAD 4: [5]/5
+Comentarios:
+> 🐟 A pesar de no seguir explícitamente la guía de la documentación, el programa es totalmente funcional y la explicación es clara. Analiza las dificultades que se presentaron en el proceso y reconoce los avances en su comprensión de la lógica.
+
+
 ___
 
 ### 🐟 Actividad 9 🐟
