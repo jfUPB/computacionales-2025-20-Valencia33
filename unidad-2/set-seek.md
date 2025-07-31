@@ -18,7 +18,7 @@ M=1
 
 - __¿Que va a pasar?__
 
-  Va a cargar el espacio de memoria que le corresponde al pixel de la esquina superior izquierda y le va a cambiar su valor a 1 de tal forma que ese pixel ahora se vuelve negro.
+  Va a cargar el espacio de memoria que le corresponde al pixel de la esquina superior izquierda y le va a cambiar su valor a 1. lo que volverá ese pixel negro.
 
 - __Reflexiona__
 
@@ -27,6 +27,9 @@ M=1
 - __Traducción a C++__
 
   Se debe de crear una variable que corresponda a la posición de memoria 16384 y se le debe cambiar su valor a 1.
+
+♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
 
 ### 🐠 Actividad 02 🐠
 
@@ -50,6 +53,8 @@ M=-1
 - __Traducción a C++__
 
   Se debe de crear una variable que corresponda a la posición de memoria 16384 y se le debe cambiar su valor a -1.
+
+♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
 
 ### 🐠 Actividad 03 🐠
 
@@ -142,4 +147,144 @@ M=-1
 
 - __Traducción a C++__
 
-  😟
+  Se me ocurre como hacerlo, sin embargo no conozco suficiente de la sintaxis de C++ para escribirlo en ese lenguaje.
+
+  - Una variable que haga referencia al espacio de memoria donde están los bits correspondientes a la pantalla.
+  - Un contador para saber el desfase que hay entre la posición inicial y la actual.
+  - Un chequeo para saber que tecla fue presionada, me imagino que C++ siendo más avanzado tendrá una función que lea teclas específicas, a diferencia del Hack.
+  - Todo esto dentro de un while.
+
+♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
+### 🐠 Actividad 04 🐠
+
+__Convierte un ciclo while en un ciclo for__
+
+__C++__
+```c++
+//Adds 1+...+100.
+int sum=0;
+for(int i = 1; i <=100; i++){
+   sum+= i;
+}
+```
+__ASM__
+```asm
+(LOOP)
+@100
+M=M+1
+D=M
+@SUM
+M=D+M
+@100
+D=M
+D=D-A
+@LOOP
+D;JNE
+(FIN)
+@FIN
+0;JMP
+```
+
+### 🐠 Actividad 05 🐠
+
+__PUNTEROS:__ Son variables que almacenan el espacio de memoria de otra variable.
+
+Ej1.
+```C++
+int a = 10;
+int* p;
+p = &a;
+*p = 20;
+```
+- Se crea una variable "a" con valor 10.
+- Se inicializa p, que es de tipo int*, que __CREO__ es así pq el espacio de memoria es un entero, ni idea.
+- __CREO__ que ese "&" es para referirse al espacio de memoria de "a" en vez de el valor de "a".
+- cuando "p" va acompañado de ese asterisco es que le cambia el valor a la variable en ese espacio de memoria (?).
+
+__ENSAMBLADOR__
+```asm
+@10 //carga el 10
+D=A //le asigna 10 a D
+
+@a //crea variable a
+M=D // a=10
+
+@a //llama la posición de a
+D=A //guarda la posición de la variable a en D
+@p //crea variable p
+M=D //p= la posición de a
+
+@20 //carga número 20
+D=A //lo asigna a D
+@p //llama la posición de variable p
+A=M //guarda en el registro a lo que estaba almacenado en p (que era la posición de memoria de la variable a)
+M=D //reecribe en la memoria de a el valor 20
+```
+
+Ej2.
+```C++
+int a = 10;
+int b = 5;
+int *p;
+p = &a;
+b = *p;
+```
+- En este caso el valor de "b" cambia a 10 puesto que "*p" es igual a "a".
+
+__ENSAMBLADOR__
+```asm
+@10
+D=A
+
+@a
+M=D
+
+@5
+D=A
+
+@b
+M=D
+
+@a
+D=A
+@p
+M=D
+
+//no he terminado esta parte final
+@p
+A=M
+@b
+M=D
+```
+
+
+‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️ EXCELENTE EXPLICACIÓN ‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️
+
+### 🐟 NOTAS PARA MIGUEL VALENCIA QUE ESTABA SIENDO MUY JUICIOSO Y PRESENTANDO UNA PRUEBA: 🐟  
+`C++:`  
+PUNTERO: es una variable que guarda direcciones ✅.  
+`int i;` -> i es una variable donde se guarda un valor (un entero). 
+  
+> `int* ptr;` -> declara un puntero usando * ✅ 
+> `ptr = nombre de la variable` ✅ 
+> `* = guarda una dirección`  ✅
+> `int = el tipo de objetos de los que guarda la dirección.`  ✅
+  
+> `int i = 5;`  ✅
+> `int* ptr = i;` -> NO FUNCIONA!!! no puedes guardar el valor de i en ptr, sólo la posición. Eso es lo que estarías haciendo ahí. ✅
+
+Lo que haría el puntero es APUNTAR al contenido de la variable en la memoria. Para esto se agrega: ✅
+> `int* ptr = &i;`, donde & es la definición de la variable. El & lo usamos para llamar la dirección de la variable. Ahí sí estarías guardando su posición. ✅
+  
+Pero para guardar en una variable el valor de la variable a la que estás apuntando en ese momento en otra variable:  ✅
+> `int j = *ptr;`
+
+Y para reescribir la variable a la que estás aputando:✅
+> `*ptr = 25;`
+
+🐡 En otras palabras:
+> `&i` = para apuntar a la posición de una variable (apuntarle).   ✅
+> `*ptr` = para guardar o reescribir el valor que está almacenada en la variable a la que apuntas. ✅
+
+‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️ EXCELENTE EXPLICACIÓN ‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️
