@@ -160,6 +160,49 @@ M=-1
 
 __Convierte un ciclo while en un ciclo for__
 
+### Ciclo WHILE
+
+__C++__
+```c++
+//Adds 1+...+100.
+ int i=1;
+ int sum=0;
+
+ while(i <=100){
+    sum+= i;
+    i++;
+ }
+```
+__ASM__
+
+```asm
+// Adds1+...+100.
+ @i // i refers to some memory location.
+ M=1 // i=1
+ @sum // sum refers to some memory location.
+ M=0 // sum=0
+ (LOOP)
+ @i
+ D=M // D=i
+ @100
+ D=D-A // D=i-100
+ @END
+ D;JGT // If(i-100)>0 gotoEND
+ @i
+ D=M // D=i
+ @sum
+ M=D+M // sum=sum+i
+ @i
+ M=M+1 // i=i+1
+ @LOOP
+ 0;JMP // GotoLOOP
+ (END)
+ @END
+ 0;JMP // Infinite loop
+```
+
+### Ciclo FOR
+
 __C++__
 ```c++
 //Adds 1+...+100.
@@ -168,6 +211,7 @@ for(int i = 1; i <=100; i++){
    sum+= i;
 }
 ```
+
 __ASM__
 ```asm
 (LOOP)
@@ -185,6 +229,8 @@ D;JNE
 @FIN
 0;JMP
 ```
+
+Ambas llevan un contador en un espacio de memoria, esto para saber el número de iteraciones que lleva o que hay que hacer. En este caso el número de iteraciones en ambos casos es conocido, por lo que no hay diferencia entre el for y el while.
 
 ### 🐠 Actividad 05 🐠
 
@@ -288,3 +334,4 @@ Y para reescribir la variable a la que estás aputando:✅
 > `*ptr` = para guardar o reescribir el valor que está almacenada en la variable a la que apuntas. ✅
 
 ‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️ EXCELENTE EXPLICACIÓN ‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️‼️
+
