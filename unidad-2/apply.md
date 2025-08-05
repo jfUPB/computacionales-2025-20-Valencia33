@@ -19,6 +19,8 @@ for (int j = 0; j < 10; j++) {
 ```
 __TRADUCCIÓN A ASM__
 
+Inicializando el array desde el simulador:
+
 ```asm
 (FOR)
 // Posición memoria contador
@@ -38,6 +40,42 @@ D;JEQ
 @6
 // hace sum += arr[j]
 M=D+M
+@FOR
+0;JMP
+
+(FIN)
+@FIN
+0;JMP
+```
+
+Inicializando el array desde el código:
+
+```asm
+(LLENAR)
+@4 // Posición memoria contador para llenar el array
+M=M+1 
+D=M // 1er valor del 1er puesto
+@15
+A=D+A // Salta al valor 16, 17, 18... etc. depende de D
+M=D
+@10 // Cambiar hasta el punto que se requiera llenar el array.
+D=D-A
+@LLENAR
+D;JNE
+@FOR
+0;JMP
+
+(FOR)
+@5 // Posición memoria contador
+M=M+1 
+D=M // Guarda el contador en D
+@15
+A=D+A // A le suma el contador para coger la posición de memoria 16.
+D=M // Le asigna lo que haya ahí, es decir arr[0]
+@FIN
+D;JEQ // Necesita que pare cuando M=0
+@6 // Posición memoria suma
+M=D+M // hace sum += arr[j]
 @FOR
 0;JMP
 
@@ -65,6 +103,8 @@ El array se debe inicializar desde la posición 16, es decir que M[16]-M[25] ser
 
 - __(FOR):__ En la posición 5 de memoria voy a llevar el contador, es decir en algún momento habrá que hacer A=A+D, donde D será el contador. Este contador existe debido a que la posición en el array se consigue con este por medio de A=D+A, lo que logra que nos movamos en la memoria con saltos de a 1. Este FOR es infinito siempre y cuando una posición de memoria en el array no tenga el valor 0... 😐. Igual en el marco del ejercicio este no es el caso, entonces si alguna de esas posiciones es 0 el FOR se para.
 - __Inicialización array:__ Cómo indica el ejercicio el array debe ser inicializado desde la posición 16, por lo que este programa permite sumar cualquier número dentro del array siempre y cuando esté antes de un 0.
+- __(LLENAR):__ Este se encarga de llenar el array desde el código, aunque lo quería hacer con un solo contador me dió pereza pensar. Lo que hace es un loop donde incrementa el espacio de memoria que va a modificar por 1 en cada iteración, de esta forma llena un array de cualquier tamaño con número consecuentes.
 
 ♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
 
