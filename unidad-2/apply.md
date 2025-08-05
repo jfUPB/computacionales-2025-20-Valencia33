@@ -21,16 +21,23 @@ __TRADUCCIÓN A ASM__
 
 ```asm
 (FOR)
-@5 #Posición memoria contador
-M=M+1 
-D=M #Guarda el contador en D
+// Posición memoria contador
+@5 
+M=M+1
+// Guarda el contador en D 
+D=M 
 @15
-A=D+A #A le suma el contador para coger la posición de memoria 16.
-D=M #Le asigna lo que haya ahí, es decir arr[0]
+// A le suma el contador para coger la posición de memoria 16.
+A=D+A
+// Le asigna lo que haya ahí, es decir arr[0]
+D=M
 @FIN
-D;JEQ #Necesita que pare cuando M=0
-@6 #Posición memoria suma
-M=D+M #hace sum += arr[j]
+// Necesita que pare cuando M=0
+D;JEQ
+// Posición memoria suma
+@6
+// hace sum += arr[j]
+M=D+M
 @FOR
 0;JMP
 
@@ -60,3 +67,4 @@ El array se debe inicializar desde la posición 16, es decir que M[16]-M[25] ser
 - __Inicialización array:__ Cómo indica el ejercicio el array debe ser inicializado desde la posición 16, por lo que este programa permite sumar cualquier número dentro del array siempre y cuando esté antes de un 0.
 
 ♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
