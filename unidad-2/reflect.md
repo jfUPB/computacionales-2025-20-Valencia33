@@ -43,6 +43,64 @@ __Parte 2: reflexión sobre tu proceso__
 
 ### 🐟 Actividad 08 🐟
 
+[Bitácora de Mar Torrente](https://github.com/jfUPB/computacionales-2025-20-EsTorrente/blob/unidad2/apply/unidad-2/apply.md)
+
+```asm
+@i
+M=0
+
+(ARREGLO)
+//subir contador
+@i
+M=M+1
+
+D=M
+A=D
+M=D
+
+//check arreglo
+@10
+D=D-A
+@ARREGLO
+D;JLT
+
+@i
+M=0
+@SUMA
+0;JMP
+
+(SUMA)
+@i
+D=M
+@sum
+M=D+M
+
+//CHECK
+@9
+D=D-A
+@FIN
+D;JGT
+
+//SUBIR CONTADOR
+@i
+M=M+1
+@SUMA
+0;JMP
+
+(FIN)
+@FIN
+0;JMP
+```
+- Correrlo sin ninguna modificación en la memoria RAM.
+
+  - Esto con el fin de chequear que efectivamente el programa hace lo que indica el ejercicio.
+  - El código funciona perfectamente y cumple con lo que pedía el ejercicio.
+
+- Realizar cambios en la memoria RAM.
+
+  - Esto lo tengo pensado hacer para ver cómo el programa trata con eso cambios en la memoria, ver si los reescribe o si rompe el programa por completo. Esto con el fin de evaluar la versatilidad y repeteción del programa.
+  - El programa reescribe la posición de memoria cada que llega a ella y no depende de que haya 0s en todas las posiciones de memoria, es decir, no solo es un programa que cumple con lo pedido sino que además toma en cuenta otras posibilidades en el marco del computador Hack.
+
 
 🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸🔸
 
@@ -67,3 +125,4 @@ __Parte 2: reflexión sobre tu proceso__
 - __Comentario Adicional: ¿Alguna otra cosa que quieras compartir sobre cómo te sentiste aprendiendo estos conceptos?__
 
   - Contento, me gustó la unidad.
+
