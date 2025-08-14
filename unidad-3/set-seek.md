@@ -148,3 +148,88 @@ int main() {
     return 0;
 }
 ```
+♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
+### 🐠 Actividad 04 🐠
+
+__Experimentos__
+
+1. __modificar el segmento de texto__
+
+  ```c++
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+
+int main() {
+    // Variable local (stack)
+    int a = 10;
+    int b = 20;
+
+    /**********************************************************
+        EXPERIMENTO 1
+    ***********************************************************/
+
+    void* ptr = reinterpret_cast<void*>(&main);
+    cout << "Voy a modificar la memoria en la dirección: " << ptr << endl;
+    *reinterpret_cast<int*>(ptr) = 0;
+
+    /********************************************************/
+
+    return 0;
+}
+  ```
+
+- __Predicción__
+
+En este caso se crea una variable tipo void* llamada ptr, y se le __intenta__ asignar un valor, debido a que se intenta castear el valor de main a un void*.
+
+Posteriormente se saca un texto donde menciona la dirección de memoria de este ptr.
+
+Y por último se "reinicia" la variable.
+
+- __¿Qué ocurre? ¿Por qué?__
+
+Todo bien excepto que no sabía que iba a dar error. Esto ocurre pues intenta sobrescribir el valor de una función que está en el __segmento de texto__.
+
+3. modificar el segmento de datos (variables globales)
+
+  ```c++
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+// Variables globales
+int global_inicializada = 42;
+int global_no_inicializada;
+
+
+int main() {
+    // Variable local (stack)
+    int a = 10;
+    int b = 20;
+
+    /**********************************************************
+        EXPERIMENTO 3
+    ***********************************************************/
+
+    cout << "global_inicializada: " << global_inicializada << endl;
+    cout << "global_no_inicializada: " << global_no_inicializada << endl;
+
+
+    global_inicializada = 69;
+    global_no_inicializada = 666;
+
+    cout << "global_inicializada: " << global_inicializada << endl;
+    cout << "global_no_inicializada: " << global_no_inicializada << endl;
+
+    /********************************************************/
+
+    return 0;
+}
+  ```
+
+De este experimento me llevo que una variable no inicializada se le da un valor por defecto de 0. Intenté y se pueden realizar operaciones con variables no inicializadas, muy raro pensé que daría error.
