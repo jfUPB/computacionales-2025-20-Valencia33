@@ -309,4 +309,6 @@ int main() {
 
 - __Dibuja un mapa de memoria conceptual de este programa__
 
-  
+  <img width="512" height="738" alt="imagen" src="https://github.com/user-attachments/assets/32146f18-d79f-4f67-bfc5-57f173c22a47" />
+
+
