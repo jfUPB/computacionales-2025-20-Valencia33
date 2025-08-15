@@ -233,3 +233,80 @@ int main() {
   ```
 
 De este experimento me llevo que una variable no inicializada se le da un valor por defecto de 0. Intenté y se pueden realizar operaciones con variables no inicializadas, muy raro pensé que daría error.
+
+♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️〰️♾️〰️♾️♾️
+
+### 🐠 Actividad integradora de la investigación 🐠
+
+__analizar un programa integral, predecir su comportamiento en memoria y verificar tus hipótesis utilizando el depurador de Visual Studio.__
+
+```c++
+#include <iostream>
+
+int contador_global = 100;
+
+void ejecutarContador() {
+    static int contador_estatico = 0;
+    contador_estatico++;
+    std::cout << "  -> Llamada a ejecutarContador. Valor de contador_estatico: " << contador_estatico << std::endl;
+}
+
+void sumaPorValor(int a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorValor, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorReferencia(int& a) {
+    a = a + 10;
+    std::cout << "  -> Dentro de sumaPorReferencia, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorPuntero(int* a) {
+    *a = *a + 10;
+    std::cout << "  -> Dentro de sumaPorPuntero, '*a' ahora es: " << *a << std::endl;
+}
+
+int main() {
+    int val_A = 20;
+    int val_B = 20;
+    int val_C = 20;
+
+    std::cout << "--- Experimento con paso de parámetros ---" << std::endl;
+    std::cout << "Valor inicial de val_A: " << val_A << std::endl;
+    sumaPorValor(val_A);
+    std::cout << "Valor final de val_A: " << val_A << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_B: " << val_B << std::endl;
+    sumaPorReferencia(val_B);
+    std::cout << "Valor final de val_B: " << val_B << std::endl << std::endl;
+
+    std::cout << "Valor inicial de val_C: " << val_C << std::endl;
+    sumaPorPuntero(&val_C);
+    std::cout << "Valor final de val_C: " << val_C << std::endl << std::endl;
+
+    std::cout << "--- Experimento con variables estáticas ---" << std::endl;
+    ejecutarContador();
+    ejecutarContador();
+    ejecutarContador();
+
+    return 0;
+}
+```
+
+- __¿Cuál será la salida final en la consola de este programa?__
+
+  - En un principio va a mostrar el valor guardado en A, posteriormente llamará la función SumaPorValor() y le entregará como parametro val_A, que como aprendimos en realidad es una copia de la variable inicializada en la memoria stack. Dentro de esta función se le sumará 10 al valor que entregó "a", por lo que en la consola escribirá: __Dentro de sumaPorValor, 'a' ahora es: 30__, sin embargo esto no cambiará el valor de val_A puesto que no se modificó el valor en el espacio de memoria de esta variable, solo el de la copia.
+  - En el caso de B esto es diferente, puesto que es por referencia entonces no le pasa una copia sino la variable de verdad, por lo que la operación que se realiza dentro de la función si afecta el valor de la variable val_B. El nuevo valor será 30.
+  - En este caso tambien se modifica el valor de la variable entregada, sin embargo lo hace diferente, puesto que recibe el espacio de memoria de la variable y eso es lo que manipula realmente, provocando que el resultado final sea 30.
+  - Por último están esas tres llamadas a la función ejecutarContador(), en este caso si se aumentaría el contador hasta 3, incluso si parece que reescribe la variable varias veces este no es el caso puesto que una variable estática solo se puede inicializar una vez.
+
+- __Escribe la salida completa que esperas.__
+
+  - val_A: 20
+  - val_B: 30
+  - val_C: 30
+  - contador_estatico: 3
+
+- __Dibuja un mapa de memoria conceptual de este programa__
+
+  
