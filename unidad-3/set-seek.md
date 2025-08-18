@@ -349,6 +349,11 @@ Este me gustó mucho observar que sucedia puesto que se ve como literal agarra e
 <img width="818" height="480" alt="image" src="https://github.com/user-attachments/assets/9589837d-2f65-49c0-94e0-63b9e2b696f3" />
 <img width="892" height="569" alt="image" src="https://github.com/user-attachments/assets/9ae0258e-1746-4bdb-9739-9cb91c725f05" />
 
+- __Explica con tus propias palabras el comportamiento de contador_estatico. ¿Por qué “recuerda” su valor entre llamadas a la función ejecutarContador? ¿En qué se diferencia de una variable local normal?__
+
+Entiendo que recuerda su valor por que es estático, sin embargo la razón por la cual una variable estática "recuerda" díria que es por que es una especie de referencia constante, es decir, es una variable a la que siempre que se llama su valor va ligado con un espacio de memoria específico, y por eso solo se inicializa una vez y recuerda su valor.
+
+Se diferencia de una variable normal por el espacio de memoria donde está guardado, las variables estáticas estánn guardado en el espacio de memoria donde también están las globales, lo que le da sus propiedades únicas de recordar su valor y de solo ser inicializados una vez.
 
 
 
