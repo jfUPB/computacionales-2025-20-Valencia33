@@ -293,6 +293,8 @@ int main() {
 }
 ```
 
+__Predicción__
+
 - __¿Cuál será la salida final en la consola de este programa?__
 
   - En un principio va a mostrar el valor guardado en A, posteriormente llamará la función SumaPorValor() y le entregará como parametro val_A, que como aprendimos en realidad es una copia de la variable inicializada en la memoria stack. Dentro de esta función se le sumará 10 al valor que entregó "a", por lo que en la consola escribirá: __Dentro de sumaPorValor, 'a' ahora es: 30__, sin embargo esto no cambiará el valor de val_A puesto que no se modificó el valor en el espacio de memoria de esta variable, solo el de la copia.
@@ -310,5 +312,48 @@ int main() {
 - __Dibuja un mapa de memoria conceptual de este programa__
 
   <img width="512" height="738" alt="imagen" src="https://github.com/user-attachments/assets/32146f18-d79f-4f67-bfc5-57f173c22a47" />
+
+__Verificación y análisis__
+
+- __Comparación con el depurador__
+
+  Output real:
+
+  <img width="638" height="299" alt="image" src="https://github.com/user-attachments/assets/4b7e7916-42c7-4658-90fe-607878f18b5f" />
+
+  De primerazo observo que efectivamente los resultados finales concuerdan con lo que predije, sin embargo me gustaría saber si eso pasó por las razones correctas, entonces ahora voy a hacer un análisis más a fondo utilizando el breakpoint.
+
+  > Observé que una línea antes de que se inicialice una variable el computador la inicializa antes y le asigna un valor antes de asignarle el valor real.
+
+Los puntos de interés me imagino que se refieron a aquellas líneas de código que alteral variables o ejecutan acciones. Por otro lado tambien pienso que se pueden referir a cuando se llaman funciones, pues es donde radica la diferencia del ejercicio que nos compete.
+
+__Describe qué demuestran estas capturas sobre la diferencia entre los diferentes tipos de paso por parámetros analizados.__
+
+- SumarPorValor()
+
+  Acá observamos como se crea una copia cuando el parámetro entregado es solo "int a"
+
+<img width="704" height="478" alt="image" src="https://github.com/user-attachments/assets/00ee01af-c02e-4983-a437-9a9e28e18436" />
+
+- SumarPorReferencia()
+
+Acá se puede ver como aunque se crea una copia de la variable esta igual modifica la variable entregada como parámetro, por eso es que se ve que el valor fue modificado.
+
+  <img width="692" height="458" alt="image" src="https://github.com/user-attachments/assets/f89c45cb-9606-40e3-a269-0364404df81c" />
+  <img width="706" height="508" alt="image" src="https://github.com/user-attachments/assets/f6a9390f-21ea-4c5d-810c-be8eaf3555ee" />
+
+- SumarPorPuntero()
+
+Este me gustó mucho observar que sucedia puesto que se ve como literal agarra el espacio de memoria donde está guardado el valor y lo utiliza para crear una copia de una variable para así modificar su valor y finalmente alterar el valor.
+
+<img width="818" height="480" alt="image" src="https://github.com/user-attachments/assets/9589837d-2f65-49c0-94e0-63b9e2b696f3" />
+<img width="892" height="569" alt="image" src="https://github.com/user-attachments/assets/9ae0258e-1746-4bdb-9739-9cb91c725f05" />
+
+
+
+
+
+
+
 
 
