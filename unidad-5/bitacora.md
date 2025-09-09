@@ -75,8 +75,13 @@ ___
 - ***¿Como funciona la manipulación de la memoria en C++ cuando se implementan los conceptos de herencia, encapsulamiento y polimorfismo?***
 
 ## 3.  **Registro de exploración:** 
+
 > Aquí documentas cada ciclo de pregunta -> hipótesis -> experimento -> hallazgo -> reflexión.
 > Debe ser rico en evidencia visual (código, capturas del depurador con anotaciones, diagramas).
+
+### Actividad 02
+
+
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
