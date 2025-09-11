@@ -81,7 +81,23 @@ ___
 
 ### Actividad 02
 
+- **Analiza el código de la aplicación y trata de explicar en tus propias palabras qué está haciendo**
 
+El código cada frame está chequeando por 3 inputs, click izquierdo, espacio y la s, el más interesante de estos tres es el click izquierdo puesto que este llama el método createRisingParticle() el cual se encarga de "calcular" todos los parámetros necesitados para crear una particula de este tipo y de esa forma, al final del método, llamar el método constructor de la particula para pasarle esos parámetros.
+
+Este tipo de particula hereda gran parte de sus carácteristicas de una clase base llamada Particula, la cual solamente declara varios métodos en virtual para que sean o no sobreescritos, de estos los más interesantes son los métodos de update() y draw(). El primero se encarga de modificar la edad y posición de la particula a medida que pasa el tiempo. Adicionalmente este también se encarga de definir cuando debería explotar la particula, definiendo si se encuentra en una zona llamda explosionThreshold.
+
+<img width="781" height="306" alt="image" src="https://github.com/user-attachments/assets/12b78e35-4e3e-474c-8607-8eb2cacf1166" />
+
+Volviendo a ofApp.cpp observamos que en el método update() se hace un chequeo del frame anterior en cada frame ahí se evalua por cada particula si esta debería de explotar, llamando al metodo shouldExplode() de cada una, si este devuelve true entonces genera un número random entre 0 y 2 para definir que tipo de explosión va a realizar.
+
+<img width="941" height="538" alt="image" src="https://github.com/user-attachments/assets/d8464400-3410-459a-992b-d563cbf062d6" />
+
+Estos tipos de explosiones son objetos que heredan de una clase base llamada ExplosionParticle la cual hereda de Particle. 
+
+Los tipos de particula son los siguientes CircularExplosion, RandomExplosion y StarExplosión, todas tres se diferencian en que forma y con que patrón evolucionan las particulas.
+
+Ya por último se limpia la memoria chequeando si en el frame anterior esa particula estaba muerta.
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
