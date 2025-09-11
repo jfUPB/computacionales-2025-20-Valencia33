@@ -79,7 +79,7 @@ ___
 > Aquí documentas cada ciclo de pregunta -> hipótesis -> experimento -> hallazgo -> reflexión.
 > Debe ser rico en evidencia visual (código, capturas del depurador con anotaciones, diagramas).
 
-### Actividad 02
+### 🐟 Actividad 01 🐟
 
 - **Analiza el código de la aplicación y trata de explicar en tus propias palabras qué está haciendo**
 
@@ -98,6 +98,26 @@ Estos tipos de explosiones son objetos que heredan de una clase base llamada Exp
 Los tipos de particula son los siguientes CircularExplosion, RandomExplosion y StarExplosión, todas tres se diferencian en que forma y con que patrón evolucionan las particulas.
 
 Ya por último se limpia la memoria chequeando si en el frame anterior esa particula estaba muerta.
+
+### 🐟 Actividad 02 🐟
+
+- 🧐🧪✍️ **Antes de ejecutar el experimento, ¿Qué esperas ver en memoria (hipótesis)? Ejecuta el código y muestra una captura de pantalla del objeto en la memoria. ¿Qué puedes observar? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?**
+
+  - Previo a ejecutar el programa espero ver en el depurador una variable llamada como esa clase que va a tener "instancias" de los métodos que menciona, realmente no estoy seguro.
+
+<img width="920" height="316" alt="image" src="https://github.com/user-attachments/assets/d47b681e-ccfe-46a5-8cd1-ecaf992a0170" />
+
+Observo que ofApp está compuesto por una herencia a ofBaseApp donde observamos que viene con dos variables MouseX y MouseY, además, por fuera de esta herencia observamos que tiene un atributo llamado particles el cual es un vector que está compuesto por punteros a cada particula.
+
+-  🧐🧪✍️ **Trata de buscar en memoria todas las partes que componen al objeto tipo CircularExplosion ¿Qué puedes observar en la memoria? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?**
+
+<img width="1208" height="513" alt="image" src="https://github.com/user-attachments/assets/a7b6f276-3100-4c27-b851-ee1e1e8866a4" />
+
+<img width="1210" height="471" alt="image" src="https://github.com/user-attachments/assets/647094a8-bb94-4bac-8da0-bb1f027f22d4" />
+
+<img width="1201" height="468" alt="image" src="https://github.com/user-attachments/assets/fa5b2db1-127b-4ca0-a5c5-f3d171b67b26" />
+
+Observo como CircularExplosion está compuesto completamente por herencias; hereda primero de ExplosionParticle y con esa viene Particle, observo los atributos por los cuales está compuesto el objeto y concluyo que pa crear un objeto de estos hay que hacer mil cosas, y que sacar un random es la tarea más dura de un computador. Aparte de esto concluyo que un objeto el cual tiene herencias recibe con el toda la clase que hereda, y va con todos sus atributos.
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
