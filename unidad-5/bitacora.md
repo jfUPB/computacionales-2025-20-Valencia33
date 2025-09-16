@@ -122,3 +122,98 @@ Observo como CircularExplosion está compuesto completamente por herencias; here
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
 > Esta sección es OBLIGATORIA y central para tu evaluación
+
+## Apply: Aplicación 🛠
+
+### Particulas Nuevas
+
+Para las particulas que hay crear lo primero que hice fue implementar un switch dentro de createRisingParticle() el cual se encarga de definir que particula se va a crear.
+
+**AcceleratedParticle**
+
+Esta particula cambia su comportamiento aumentando su velocidad, además, su posición en x es modificada de tal forma que "baile". En un principio pensé que la función cos() me ayudaría sumandole a la posición para que bailara un poco. Esto no funcionó entonces decidí crear dos variables dinámicas las cuales se encargan de modificar el valor de xOffset para que de esa forma si baile. No se me ocurre otra forma más simple de implementarlo.
+
+```
+class AcceleratedParticle : public Particle {
+protected:
+	glm::vec2 position;
+	glm::vec2 velocity;
+	ofColor color;
+	float lifetime; // tiempo máximo antes de explotar
+	float age;
+	bool exploded;
+
+public:
+	AcceleratedParticle(const glm::vec2 & pos, const glm::vec2 & vel, const ofColor & col, float life)
+		: position(pos)
+		, velocity(vel)
+		, color(col)
+		, lifetime(life)
+		, age(0)
+		, exploded(false) {
+	}
+
+	void update(float dt) override {
+		position.y += velocity.y * dt;
+		age += dt;
+		// Aumenta la desaceleración para dar sensación de recorrido largo
+		velocity.y += 9.8f * dt / 8;
+
+		float wiggleOffset = 0;
+		bool wiggleBehavior = false;
+
+		if (wiggleBehavior)
+		{
+			wiggleOffset += 2;
+			if (wiggleOffset < 10)
+			{
+				wiggleBehavior = false;
+			}
+		}
+		else
+		{
+			wiggleOffset -= 2;
+			if (wiggleOffset > -10) {
+				wiggleBehavior = true;
+			}
+		}
+
+		position.x += wiggleOffset;
+
+
+		// Condición de explosión: cuando la partícula alcanza aproximadamente el 15% de la altura
+		float explosionThreshold = ofGetHeight() * 0.15 + ofRandom(-30, 30);
+		if (position.y <= explosionThreshold || age >= lifetime) {
+			exploded = true;
+		}
+	}
+
+	void draw() override {
+
+		color.setHsb(lifetime/age*255, 255,255);
+
+		ofSetColor(color);
+		// Partícula más grande
+		ofDrawRectangle(position, 10, 10);
+	}
+
+	bool isDead() const override { return exploded; }
+	bool shouldExplode() const override { return exploded; }
+	glm::vec2 getPosition() const override { return position; }
+	ofColor getColor() const override { return color; }
+};
+
+```
+
+### Explosión Rectangular.
+
+<img width="699" height="401" alt="image" src="https://github.com/user-attachments/assets/b4396357-c83a-49d5-9430-33a03c10987a" />
+
+En un principio decidí implementar esta clase de explosión, precisamente por que es muy simple y es casi que una copia exacta de la Explosión random, me sirvió como acercamiento a los conceptos de la unidad.
+
+Sin embargo como ya dije, me pareció una implementación bastante simple, por lo que modifiqué sus parametros para que fuera mucho más interesante. Implemente un cambio de tamaño de las particulas, entonces ahora es más como una implosión y adicionalmente añadí un cambio de color para las particular.
+
+Entonces la cambié para que fuera más interesante, y quedó así:
+
+<img width="713" height="732" alt="image" src="https://github.com/user-attachments/assets/b9f85cc6-2fb7-4706-9101-8b2245130466" />
+
