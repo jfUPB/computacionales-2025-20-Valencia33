@@ -188,7 +188,7 @@ public:
 };
 ```
 
-**TrailParticle**
+**ResizeParticle**
 
 Tengo la idea de hacer una particula que deje como una estela, pero sé que eso de alguna forma tiene algo que ver con un array y me da miedo.
 
@@ -196,7 +196,66 @@ Aunque primero voy a hacer que incremente su tamaño a medida que sube y que cam
 
 Me rindo eso está muy duro.
 
+Ya desde hace un tiempo conocía la siguiente función ofDrawRectRounded() la cual permite dibujar un rectangulo con esquinar redondeadas, por lo que en mi mente me deja cambiar de un circulo a un rectangulo, solo es cuestión de encontrar los extremos que pueda tomar ese valor. Por esto (y por que no sé inicializar un array) decidí hacer una particula que cambiara de tamaño y forma a medida que sube.
+
+<img width="661" height="224" alt="image" src="https://github.com/user-attachments/assets/2ad45da2-c257-4ab8-89f9-03552f806030" />
+
+Para lograr este cambio utilicé la función ofClamp() que basicamente no deja que un valor se salga de un rango, entonces de esa forma es muy fácil mantener ese valor "normalizado" y fue el que utilicé para 
+
 ```
+// -------------------------------------------------
+// TrailParticle: Partícula que nace en la parte inferior y sube dejando una línea
+// -------------------------------------------------
+
+class TrailParticle : public Particle {
+protected:
+	glm::vec2 position;
+	glm::vec2 velocity;
+	ofColor color;
+	float lifetime; // tiempo máximo antes de explotar
+	float age;
+	bool exploded;
+
+public:
+	TrailParticle(const glm::vec2 & pos, const glm::vec2 & vel, const ofColor & col, float life)
+		: position(pos)
+		, velocity(vel)
+		, color(col)
+		, lifetime(life)
+		, age(0)
+		, exploded(false) {
+	}
+
+	void update(float dt) override {
+		position.y += velocity.y * dt;
+		age += dt;
+		position.x += sin(age * 10) * 150 * dt;
+		velocity.y += 9.8f * dt / 8;
+
+		// Condición de explosión: cuando la partícula alcanza aproximadamente el 15% de la altura
+		float explosionThreshold = ofGetHeight() * 0.15 + ofRandom(-30, 30);
+		if (position.y <= explosionThreshold || age >= lifetime) {
+			exploded = true;
+		}
+	}
+
+	void draw() override {
+
+		float t = ofClamp(age / lifetime, 0, 1);
+		float size = ofLerp(10, 40, t);
+
+		color.setHsb(age / lifetime * 255, 255, 255);
+		ofSetColor(color);
+		float roundness = ofMap(t, 0, 0.5f, size, size / 4);
+		ofDrawRectRounded(position.x - size / 2, position.y - size / 2, size, size, roundness);
+
+	}
+
+	bool isDead() const override { return exploded; }
+	bool shouldExplode() const override { return exploded; }
+	glm::vec2 getPosition() const override { return position; }
+	ofColor getColor() const override { return color; }
+};
 
 ```
 
