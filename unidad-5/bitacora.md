@@ -4,6 +4,8 @@
 
 ___
 
+## 🐟 Actividad 01 🐟
+
 ### 🪸 **Parte 1: recordando los conceptos (en C#)** 🪸
 
 1.) ¿Qué es el encapsulamiento para ti?
@@ -70,16 +72,16 @@ No tengo la menor idea. Pero me imagino que por medio de los punteros que compon
 
 ___
 
+## 🐟 Actividad 02 🐟
+
 ## 2. 🐸 **La pregunta inicial** 🐸
 
 - ***¿Como funciona la manipulación de la memoria en C++ cuando se implementan los conceptos de herencia, encapsulamiento y polimorfismo?***
 
-## 3.  **Registro de exploración:** 
+### 3.  **Registro de exploración:** 
 
 > Aquí documentas cada ciclo de pregunta -> hipótesis -> experimento -> hallazgo -> reflexión.
 > Debe ser rico en evidencia visual (código, capturas del depurador con anotaciones, diagramas).
-
-### 🐟 Actividad 01 🐟
 
 - **Analiza el código de la aplicación y trata de explicar en tus propias palabras qué está haciendo**
 
@@ -99,7 +101,7 @@ Los tipos de particula son los siguientes CircularExplosion, RandomExplosion y S
 
 Ya por último se limpia la memoria chequeando si en el frame anterior esa particula estaba muerta.
 
-### 🐟 Actividad 02 🐟
+## 🐟 Actividad 03 🐟
 
 - 🧐🧪✍️ **Antes de ejecutar el experimento, ¿Qué esperas ver en memoria (hipótesis)? Ejecuta el código y muestra una captura de pantalla del objeto en la memoria. ¿Qué puedes observar? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?**
 
@@ -216,4 +218,48 @@ Sin embargo como ya dije, me pareció una implementación bastante simple, por l
 Entonces la cambié para que fuera más interesante, y quedó así:
 
 <img width="713" height="732" alt="image" src="https://github.com/user-attachments/assets/b9f85cc6-2fb7-4706-9101-8b2245130466" />
+
+Aprendí de la existencia de ofPushMatrix() y ofPopMatrix() por que se me estaba dañando el canva con esas rotaciones, entonces empecé a modificarlo y terminé haciendo un tipo de explosión totalmente diferente:
+
+```
+class ThreeDimensionalExplosion : public ExplosionParticle {
+public:
+
+	float width;
+	float height;
+	float hue;
+	float opacity;
+
+	ThreeDimensionalExplosion(const glm::vec2 & pos, const ofColor & col)
+		: ExplosionParticle(pos, glm::vec2(0, 0), col, 1.5f, ofRandom(16, 32)) {
+		float angle = ofRandom(0, TWO_PI);
+		float speed = ofRandom(80, 200);
+
+		width = 50;
+		height = 50;
+		opacity = 100;
+		hue = 0;
+
+		velocity = glm::vec2(cos(angle), sin(angle)) * speed;
+	}
+
+	void draw() override {
+
+		hue++;
+		opacity--;
+
+		color.setHsb(hue, 220, 255, opacity);
+		ofSetColor(color);
+
+		width -= 1;
+		height -= 1;
+
+		ofPushMatrix();
+		ofTranslate(position.x, position.y);
+		ofRotateDeg(hue*50, 0, 0, 1);
+		ofDrawRectangle(-size / 2, -size / 2, size, size);
+		ofPopMatrix();
+	}
+};
+```
 
