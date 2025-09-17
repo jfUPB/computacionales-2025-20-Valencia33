@@ -101,6 +101,8 @@ Los tipos de particula son los siguientes CircularExplosion, RandomExplosion y S
 
 Ya por último se limpia la memoria chequeando si en el frame anterior esa particula estaba muerta.
 
+___
+
 ## 🐟 Actividad 03 🐟
 
 - 🧐🧪✍️ **Antes de ejecutar el experimento, ¿Qué esperas ver en memoria (hipótesis)? Ejecuta el código y muestra una captura de pantalla del objeto en la memoria. ¿Qué puedes observar? ¿Qué información te proporciona el depurador? ¿Qué puedes concluir?**
@@ -120,6 +122,10 @@ Observo que ofApp está compuesto por una herencia a ofBaseApp donde observamos 
 <img width="1201" height="468" alt="image" src="https://github.com/user-attachments/assets/fa5b2db1-127b-4ca0-a5c5-f3d171b67b26" />
 
 Observo como CircularExplosion está compuesto completamente por herencias; hereda primero de ExplosionParticle y con esa viene Particle, observo los atributos por los cuales está compuesto el objeto y concluyo que pa crear un objeto de estos hay que hacer mil cosas, y que sacar un random es la tarea más dura de un computador. Aparte de esto concluyo que un objeto el cual tiene herencias recibe con el toda la clase que hereda, y va con todos sus atributos.
+
+- 🧐🧪✍️ **Captura la _vtable de un objeto CircularExplosion, pega la imagen en tu bitácora, pero observa detenidamente la tabla de funciones. ¿Qué puedes observar?**
+
+
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
@@ -766,3 +772,21 @@ private:
 };
 
 ```
+
+
+- **¿Cómo y por qué de la implementación de cada una de las extensiones solicitadas al caso de estudio?**
+
+	-   La implementación de las particulas fue hecha siguiendo este proceso que empieza con una pregunta ¿que quiero que haga la particula? Desde un principio ya sabía que quería mantener el comportamiento de subir como un fuego pirotécnico por lo que ese comportamiento lo deje. En el caso de WiggleParticle quería replicar el movimiento que tienen algunos fuegos pirotécnicos que suben como haciendo oscilaciones, además quería que su color retrara que tan cerca estaba de explotar. Implementar este en particular me llamó la atención precisamente por que fue mu fácil gracias a la herencia y polimorfismo que había entre todas estas clases, lo mismo para el caso de las explosiones, donde solamente fue modificar comportamientos particulares pero no sobreescribir la clase por completo.
+
+  	-  Por otra parte para TrailParticle (a la cual me niego cambiarle el nombre) quise en un principio que dejara como una estela a medida que subía, esto no me funcionó entonces me rendí y pasé a usar otra función que ya me llamaba la atención desde hace un rato que es la de ofDrawRectRounded()  entonces pensé que sería genial que su tamaño cambiara a medida que subía, como de cierta forma dar un indicio de que va a explotar, entonces creé una nueva variable por que si lo hacía con un tiempo predeterminado se dañaba y aprendí a usar ofClamp para lograr el resultado que quería. Al final se le dañan las esquinas pero voy a hacer como que ese era el resultado esperado.
+
+- **¿Cómo y por qué de la implementación de los conceptos de encapsulamiento, herencia y polimorfismo en tu código?**
+
+	-  En el caso de las particulas estas tienen sus atributos con la palabra reservada protected, lo que impide que se puedan modificar fuera de la clase, la única forma en la que esto puede pasar es por medio de los métodos públicos de la clase, el por que de esto es precisamente para que el comportamiento de las particulas solamente puede ser accedido y modificado desde la clase a la que le pertene, lo único que depende de un agente externo sería su instanciación.
+ 	-  La herencia es evidenciada en las clases añadidas puesto que todas heredan de Particula sus atributos, comprendiendo tambien que es una clase abstracta y por lo tanto no se puede instanciar. Esto nos ahorra un montón de tiempo pues como dije antes hace que la tarea de implementar una nueva particula sea algo rápido.
+  	-  Por último el polimorfismo es la base del funcionamiento de estas particulas, puesto que todas heredan de Particula unos metodos virtuales (draw() y update()) que cada una puede sobreescribir y añadir comportamientos propios de cada una. Encima tambien le quita trabajo de más al computador pues se llaman a través de punteros pues la lista de particles las guarda todas.
+
+- **Explica cómo verificaste que cada una de las extensiones funciona correctamente, muestra capturas de pantalla del depurador donde evidencias lo anterior, en particular el polimorfismo en tiempo de ejecución.**
+
+	-  Para verificar que cada una funcionaba correctamente modificaba el código de tal forma que solo fuera posible llamar aquella que estaba testeando, se me ocurrió otra forma que no fuera tan destructiva que sería añadir nuevos inputs para instanciar estas clases pero en últimas decidí que mejor no por que se me ocurrió una forma de implementarlas rápidamente con un switch. En últimas solo fue cambiar el valor que indica que clase se instancia.
+
