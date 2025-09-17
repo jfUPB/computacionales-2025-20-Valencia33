@@ -131,12 +131,14 @@ Observo como CircularExplosion está compuesto completamente por herencias; here
 
 Para las particulas que hay crear lo primero que hice fue implementar un switch dentro de createRisingParticle() el cual se encarga de definir que particula se va a crear.
 
-**AcceleratedParticle**
+**WiggleParticle**
 
 Esta particula cambia su comportamiento aumentando su velocidad, además, su posición en x es modificada de tal forma que "baile". En un principio pensé que la función cos() me ayudaría sumandole a la posición para que bailara un poco. Esto no funcionó entonces decidí crear dos variables dinámicas las cuales se encargan de modificar el valor de xOffset para que de esa forma si baile. No se me ocurre otra forma más simple de implementarlo.
 
+Esto tampoco funcionó entonces volví a intentarle a la trigonometría, la cual fue mucho más fácil de implementar despues de leer sobre la función seno, básicamente Asen(Bx+BC), donde A es la amplitud, B el periodo y C el desfase horizontal, pero ese no lo usé.
+
 ```
-class AcceleratedParticle : public Particle {
+class WiggleParticle : public Particle {
 protected:
 	glm::vec2 position;
 	glm::vec2 velocity;
@@ -146,7 +148,7 @@ protected:
 	bool exploded;
 
 public:
-	AcceleratedParticle(const glm::vec2 & pos, const glm::vec2 & vel, const ofColor & col, float life)
+	WiggleParticle(const glm::vec2 & pos, const glm::vec2 & vel, const ofColor & col, float life)
 		: position(pos)
 		, velocity(vel)
 		, color(col)
@@ -161,27 +163,7 @@ public:
 		// Aumenta la desaceleración para dar sensación de recorrido largo
 		velocity.y += 9.8f * dt / 8;
 
-		float wiggleOffset = 0;
-		bool wiggleBehavior = false;
-
-		if (wiggleBehavior)
-		{
-			wiggleOffset += 2;
-			if (wiggleOffset < 10)
-			{
-				wiggleBehavior = false;
-			}
-		}
-		else
-		{
-			wiggleOffset -= 2;
-			if (wiggleOffset > -10) {
-				wiggleBehavior = true;
-			}
-		}
-
-		position.x += wiggleOffset;
-
+		position.x += sin(age * 10) * 150 * dt ;
 
 		// Condición de explosión: cuando la partícula alcanza aproximadamente el 15% de la altura
 		float explosionThreshold = ofGetHeight() * 0.15 + ofRandom(-30, 30);
@@ -192,7 +174,7 @@ public:
 
 	void draw() override {
 
-		color.setHsb(lifetime/age*255, 255,255);
+		color.setHsb(age/lifetime * 255, 255, 255);
 
 		ofSetColor(color);
 		// Partícula más grande
@@ -204,6 +186,17 @@ public:
 	glm::vec2 getPosition() const override { return position; }
 	ofColor getColor() const override { return color; }
 };
+```
+
+**TrailParticle**
+
+Tengo la idea de hacer una particula que deje como una estela, pero sé que eso de alguna forma tiene algo que ver con un array y me da miedo.
+
+Aunque primero voy a hacer que incremente su tamaño a medida que sube y que cambie su color pq es más fácil y no quiero tratar con un array.
+
+Me rindo eso está muy duro.
+
+```
 
 ```
 
