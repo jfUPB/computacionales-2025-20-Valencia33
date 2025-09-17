@@ -788,5 +788,17 @@ private:
 
 - **Explica cómo verificaste que cada una de las extensiones funciona correctamente, muestra capturas de pantalla del depurador donde evidencias lo anterior, en particular el polimorfismo en tiempo de ejecución.**
 
-	-  Para verificar que cada una funcionaba correctamente modificaba el código de tal forma que solo fuera posible llamar aquella que estaba testeando, se me ocurrió otra forma que no fuera tan destructiva que sería añadir nuevos inputs para instanciar estas clases pero en últimas decidí que mejor no por que se me ocurrió una forma de implementarlas rápidamente con un switch. En últimas solo fue cambiar el valor que indica que clase se instancia.
+	-  Para verificar que cada una funcionaba correctamente modificaba el código de tal forma que solo fuera posible llamar aquella que estaba testeando, se me ocurrió otra forma que no fuera tan destructiva que sería añadir nuevos inputs para instanciar estas clases pero en últimas decidí que mejor no por que se me ocurrió una forma de implementarlas rápidamente con un switch. En últimas solo fue cambiar el valor que indica que clase se instancia. Me pasó algo curioso con el switch y es que olvidé el break; entonces instanciaba las tres particulas al mismo tiempo.
+
+   <img width="737" height="472" alt="image" src="https://github.com/user-attachments/assets/63d2c68e-37a3-472b-946f-4ea97ef8c423" />
+
+   <img width="914" height="506" alt="image" src="https://github.com/user-attachments/assets/8fcbc34a-e41a-47ee-9227-5798fb303053" />
+
+    -  Verificación de que las extensiones funcionan correctamente y polimorfismo en tiempo de ejecución:
+
+<img width="914" height="306" alt="image" src="https://github.com/user-attachments/assets/ddb6ed7b-98ce-4ac3-8a66-a0681e2f7bb4" />
+
+<img width="926" height="173" alt="image" src="https://github.com/user-attachments/assets/640e5045-8683-4b58-be70-16e7bbd5f752" />
+
+Se observa como el computador realmente ve WiggleParticle como una Particula, pero tiene punteros que apuntan a los métodos propios de esta Particula, acá se evidencia claramente el polimorfismo.
 
