@@ -198,8 +198,6 @@ Me rindo eso está muy duro.
 
 Ya desde hace un tiempo conocía la siguiente función ofDrawRectRounded() la cual permite dibujar un rectangulo con esquinar redondeadas, por lo que en mi mente me deja cambiar de un circulo a un rectangulo, solo es cuestión de encontrar los extremos que pueda tomar ese valor. Por esto (y por que no sé inicializar un array) decidí hacer una particula que cambiara de tamaño y forma a medida que sube.
 
-<img width="661" height="224" alt="image" src="https://github.com/user-attachments/assets/2ad45da2-c257-4ab8-89f9-03552f806030" />
-
 Para lograr este cambio utilicé la función ofClamp() que basicamente no deja que un valor se salga de un rango, entonces de esa forma es muy fácil mantener ese valor "normalizado" y fue el que utilicé para 
 
 ```
