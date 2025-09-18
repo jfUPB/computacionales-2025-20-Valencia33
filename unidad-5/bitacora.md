@@ -802,3 +802,32 @@ private:
 
 Se observa como el computador realmente ve WiggleParticle como una Particula, pero tiene punteros que apuntan a los métodos propios de esta Particula, acá se evidencia claramente el polimorfismo.
 
+## Consolidación, autoevaluación y cierre
+
+- 1.) **Mi nota propuesta: 4.5**
+
+- 2.) **Justificación general:**
+
+	- Pienso que mi investigación fue extensa cuando había conceptos que no entendía o que me generaban curiosidad, esto puede ser evidenciado en las activadades de set/seek y principalmente en la de apply en la cual me causó mucha curiosidad el ver como existía en la memoria la instancia de una clase que yo había creado. Aparte de esto siento que la actividad de apply me brindó un espacio para realizar experimentos no solo con respecto a la memoria pero tambien utilizando la documentación de OF para lograr lo que tenía en mente. Esto me permitía no solo comprender sino aplicar los conceptos que vimos en esta unidad.
+
+- 3.) **Mapeo de evidencias según la rúbrica:**
+
+	- **Criterio 1: profundidad de la indagación**
+
+   		- Mi autoevaluación: 5/5
+     	-  A medida que avanzaba en la unidad me di cuenta que mi pregunta inicial evolucionó no solo para entender el como se implementa el encapsulamiento, polimorfismo y herencia en la memoria sino también para entender el por qué de la implementación de estos de esa forma, el caso que creo tiene más peso es el del polimorfismo, en el cual me llamó mucho la atención como los métodos son realmente llamados con punteros propios de Particula, me dió lugar a entender con mayor profundidad estos conceptos.
+    
+	- **Criterio 2: esfuerzo cognitivo y experimentación**
+
+   		- Mi autoevaluación 4/5
+     	- A pesar de que no realicé muchos experimentos por fuera de lo que propuso el profe siento que respondí todas las preguntas y dudas que me surgieron teniendo en cuenta el enfoqué que di con mi pregunta y fue cambiando a medida que la pregunta iba evolucionando, por lo que por el lado del esfuerxo cognitivo siento que lo hice bastante bien, más allá de esto siento que a pesar de que no alteré los experimentos que propuso el profe si los analicé y entendí, lo que me dió herramientas para seguir cambiando y mejorando mis preguntas.
+    
+	- **Criterio 3: calidad del análisis y la reflexión**
+
+   		- Mi autoevaluación: 5/5
+     	- Siento que mi punto fuerte en esta unidad fue 100% la implementación de las nuevas clases en el Apply, lo menciono por que siento que no hubo mejor forma de demostrar que si había comprendido los conceptos de polimorfismo, encapsulamiento y herencia que logrando hacer esa implementación desde cero, teniendo en cuenta la naturaleza de las clases que ya habían sido creadas y tales. Aparte de esto siento que para el código del Apply demostré interés en aprender y profundizar más en lo que podía ofrecer openframeworks, e incluso si en algunas partes me estancaba con el uso de algunos elementos esto solamente me daba la excusa de seguir intentando con otros aspectos o experimentos en el Apply.
+  
+	- **Criterio 4: apropiación y articulación de conceptos**
+
+  		- Mi autoevaluación: 4/5
+    	- A pesar de que siento que mi apropiación con los conceptos fue buena y completa realmente no hice ningún esfuerzo por intentar plasmarlo de una forma articulada en la bitacora, realmente escribir acá no es mi punto fuerte por eso pienso que en este criterio falté un poco cuando se trata de las evidencias en la bitacora, por esto pero tambien por mi correcta apropiación de los conceptos pienso que es justo esta nota. 
