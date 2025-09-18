@@ -93,6 +93,9 @@ Este tipo de particula hereda gran parte de sus carácteristicas de una clase ba
 
 Volviendo a ofApp.cpp observamos que en el método update() se hace un chequeo del frame anterior en cada frame ahí se evalua por cada particula si esta debería de explotar, llamando al metodo shouldExplode() de cada una, si este devuelve true entonces genera un número random entre 0 y 2 para definir que tipo de explosión va a realizar.
 
+<a name="exp1"></a>
+Experimento 1:
+
 <img width="941" height="538" alt="image" src="https://github.com/user-attachments/assets/d8464400-3410-459a-992b-d563cbf062d6" />
 
 Estos tipos de explosiones son objetos que heredan de una clase base llamada ExplosionParticle la cual hereda de Particle. 
@@ -820,7 +823,7 @@ Se observa como el computador realmente ve WiggleParticle como una Particula, pe
 	- **Criterio 2: esfuerzo cognitivo y experimentación**
 
    		- Mi autoevaluación 4/5
-     	- A pesar de que no realicé muchos experimentos por fuera de lo que propuso el profe siento que respondí todas las preguntas y dudas que me surgieron teniendo en cuenta el enfoqué que di con mi pregunta y fue cambiando a medida que la pregunta iba evolucionando, por lo que por el lado del esfuerxo cognitivo siento que lo hice bastante bien, más allá de esto siento que a pesar de que no alteré los experimentos que propuso el profe si los analicé y entendí, lo que me dió herramientas para seguir cambiando y mejorando mis preguntas.
+     	- A pesar de que no realicé muchos experimentos por fuera de lo que propuso el profe siento que respondí todas las preguntas y dudas que me surgieron teniendo en cuenta el enfoqué que di con mi pregunta y fue cambiando a medida que la pregunta iba evolucionando, por lo que por el lado del esfuerxo cognitivo siento que lo hice bastante bien, más allá de esto siento que a pesar de que no alteré los experimentos que propuso el profe si los analicé y entendí, lo que me dió herramientas para seguir cambiando y mejorando mis preguntas. Por ejemplo, el [experimento1](#exp1)
     
 	- **Criterio 3: calidad del análisis y la reflexión**
 
