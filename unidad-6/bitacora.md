@@ -31,3 +31,10 @@
 
   - Pues el profe en este momento me está explicando justo lo que pasa detrás de camaras, pero me voy a hacer el bobo y voy a decir lo que diría si no supiera. Diría que cada frame se está actualizando la posición de cada particula con respecto a una variable que corresponde al input, y esta es la que define el como cambia en el tiempo la velocidad y posición de las particulas.
 
+## Actividad 2
+
+- **1.) Explica con tus propias palabras el propósito del patrón Observer. ¿Qué problema resuelve?**
+
+  -  El patrón observer resuelve la relación entre un objeto al que le interesa un cambio en el otro, normalmente esto se implementaría de tal forma en la que independientemente el objeto está pendiente de los atributos que le importan de otro, el problema con esta implementación es que no escala muy bien, si tengo un caso donde muchos objetos tengan que estar prestando atención a lo que sucede en otro es más organizado (aunque menos eficiente computacionalmente) utilizar observadores los cuales resuelven este problema, puesto que se suscriben a un "evento" y de esa forma están atentos a cuando sucede un cambio.
+ 
+ - **2.) Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**  
