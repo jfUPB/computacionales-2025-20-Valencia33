@@ -32,9 +32,34 @@
   - Pues el profe en este momento me está explicando justo lo que pasa detrás de camaras, pero me voy a hacer el bobo y voy a decir lo que diría si no supiera. Diría que cada frame se está actualizando la posición de cada particula con respecto a una variable que corresponde al input, y esta es la que define el como cambia en el tiempo la velocidad y posición de las particulas.
 
 ## Actividad 2
+___
+
+- **Identifica los Roles:**
+  - ¿Qué clase actúa como la interfaz Observer? ¿Qué método define?
+  - ¿Qué clase actúa como Subject? ¿Qué métodos proporciona para gestionar observadores y notificar?
+  - ¿Qué clase es el ConcreteSubject en esta aplicación? ¿Por qué? (Pista: ¿Quién envía las notificaciones?)
+  - ¿Qué clase(s) actúan como ConcreteObserver? ¿Por qué? (Pista: ¿Quién recibe y reacciona a las notificaciones?) 
+- **Sigue el flujo de notificación:**
+  - Localiza el método keyPressed en ofApp.cpp. ¿Qué sucede cuando se presiona la tecla ‘a’? ¿Qué método se llama?
+  - Ve al método notify en la clase Subject. ¿Qué hace este método?
+  - Localiza el método que implementa la interfaz Observer en la clase Particle (onNotify). ¿Qué hace este método cuando recibe el evento “attract”? 
+- **Registro y eliminación de observadores:**
+  - ¿En qué parte del código se añaden las instancias de Particle como observadores de ofApp? (Busca dónde se llama a addObserver).
+  - ¿Dónde se eliminarían los observadores si fuera necesario (por ejemplo, si una partícula se destruyera durante la ejecución)? (Busca removeObserver). ¿Por qué es importante el destructor de ofApp en este contexto? 
+___
 
 - **1.) Explica con tus propias palabras el propósito del patrón Observer. ¿Qué problema resuelve?**
 
   -  El patrón observer resuelve la relación entre un objeto al que le interesa un cambio en el otro, normalmente esto se implementaría de tal forma en la que independientemente el objeto está pendiente de los atributos que le importan de otro, el problema con esta implementación es que no escala muy bien, si tengo un caso donde muchos objetos tengan que estar prestando atención a lo que sucede en otro es más organizado (aunque menos eficiente computacionalmente) utilizar observadores los cuales resuelven este problema, puesto que se suscriben a un "evento" y de esa forma están atentos a cuando sucede un cambio.
  
- - **2.) Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**  
+ - **2.) Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**
+
+   - 
+ 
+ - **3.) Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
+
+   -   
+ 
+ - **4.) ¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global?**
+
+   - 
