@@ -35,9 +35,20 @@
 ___
 
 - **Identifica los Roles:**
+
   - ¿Qué clase actúa como la interfaz Observer? ¿Qué método define?
+ 
+    - La clase que funciona como observer en este caso sería Particle, puesto que es la única que hereda de esta. El método que sobreescribe es el de notify(). 
+
   - ¿Qué clase actúa como Subject? ¿Qué métodos proporciona para gestionar observadores y notificar?
+
+    - La clase que actua como subject sería ofApp, y los métodos utilizados para interactuar con los observers serían los siguientes:
+    - <img width="339" height="281" alt="image" src="https://github.com/user-attachments/assets/0fba5b77-7fa6-4340-afb7-a56e4c684a40" />
+
   - ¿Qué clase es el ConcreteSubject en esta aplicación? ¿Por qué? (Pista: ¿Quién envía las notificaciones?)
+
+    -  
+
   - ¿Qué clase(s) actúan como ConcreteObserver? ¿Por qué? (Pista: ¿Quién recibe y reacciona a las notificaciones?) 
 - **Sigue el flujo de notificación:**
   - Localiza el método keyPressed en ofApp.cpp. ¿Qué sucede cuando se presiona la tecla ‘a’? ¿Qué método se llama?
