@@ -140,4 +140,38 @@ ___
 - **4.) El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.**
 
   - Pues en un principio que no toca instanciar la clase que lo contiene para poder hacer llamados, cosa que sería totalmente innecesaria, puesto que es una clase completamente de comportamiento y no requiere tener una instancia, adicionalmente, por poquito que sea tambien es una decisión que nos ahorra memoria.  
+
+## Actividad 4
+
+- **Identifica los componentes:**
+
+  - ¿Cuál es la clase Context? ¿Qué miembro utiliza para mantener el estado actual?
+
+    - Creo que la clase Context sería Particle::setState(State * newState), que mantiene una instancia de state y mantiene su estado actual. 
+
+  - ¿Cuál es la interfaz State? ¿Qué métodos importantes define? (Piensa en update, onEnter, onExit).
+
+    - define 3 métodos, update(), onEnter() y onExit() 
+
+  - Enumera las clases ConcreteState. ¿Qué comportamiento específico encapsula cada una?
+
+    - Las clases ConcreteState serían: NormalState, ReppelState, StopState, AttractState y el comportamient que cada una encapsula sería el método update(). 
+
+- **Delegación del comportamiento:**
+
+  - Observa el método Particle::update(). ¿Cómo delega la lógica de actualización al estado actual?
+
+    - chequea si hay un state definido (state es un atributo local de Particle) y llama el método update() de ese estado. 
+
+  - Compara el código dentro de NormalState::update(), AttractState::update(), RepelState::update() y StopState::update(). ¿Cómo encapsula cada clase un comportamiento diferente?
+
+    - Cada una se encarga de sobreescribir el método update entonces de esa forma, cada que se llama el método update de estos estados cada uno es diferente. 
+
+- **Transiciones de estado:**
+
+  - ¿Cómo cambia una Particle de un estado a otro? ¿Qué método es responsable de gestionar la transición? (Busca setState).
+  - ¿Qué sucede dentro de Particle::setState()? ¿Por qué son importantes los métodos onEnter y onExit de la interfaz State (aunque no todos los estados concretos los usen extensivamente en este ejemplo)? ¿Qué gestionan onEnter y onExit en NormalState?
+  - ¿Qué evento externo (mediado por el patrón Observer, que ya analizaste) desencadena la llamada a setState en una Particle? 
+
+
   
