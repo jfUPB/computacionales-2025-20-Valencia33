@@ -32,7 +32,6 @@
   - Pues el profe en este momento me está explicando justo lo que pasa detrás de camaras, pero me voy a hacer el bobo y voy a decir lo que diría si no supiera. Diría que cada frame se está actualizando la posición de cada particula con respecto a una variable que corresponde al input, y esta es la que define el como cambia en el tiempo la velocidad y posición de las particulas.
 
 ## Actividad 2
-___
 
 - **Identifica los Roles:**
 
@@ -84,3 +83,44 @@ ___
    - Pienso que el flujo de instrucciones de la aplicación es mucho más claro y organizado, sin embargo me parece que es menos eficiente, lo digo más que todo por que un estado en este caso es una clase y encima todos los llamados que debe hacer a otros métodos (como vimos en la unidad pasada) son bastante demandantes, sin embargo si me parece que es un metodo que escala mucho más fácil, en el sentido en el que se controla las partes del código que deben estar atentas a lo que sucede y añadir o quitar reacciones no cuesta para nada puesto que solo están definidas una vez.
   
 ## Actividad 3
+
+- **Identifica la Factory:**
+
+  - ¿Qué clase actúa como la factory en este ejemplo?
+  
+    - En este ejemplo sería la clase ParticleFactory, la cual solo tiene un método estático que devuelve Particle* y se llama createParticle(const std::string & type)
+      
+  - ¿Cuál es el “método factory” específico? ¿Es un método de instancia o estático?
+
+    - No había visto esta pregunta, pero es un método estático que recibe una string. 
+
+  - ¿Qué tipo de objeto devuelve este método fábrica?
+
+    - Devuelve un puntero que apunta a un objeto de tipo Particula. 
+
+- **Proceso de creación:**
+
+  - Observa el método ParticleFactory::createParticle. ¿Cómo decide qué tipo de partícula específica crear y configurar?
+
+    - Utiliza la string que recibe como parámetro para decidir los valores de los atributos de cada particula como color, tamaño y velocidad. No sin antes crear una particula al principio del método.
+
+  - ¿Qué información necesita el método fábrica para realizar su trabajo?
+
+    - Diría que necesita dos cosas fundamentales, la string que le pasan de parámetro y la particula que crea dentro del método. 
+
+  - ¿Qué devuelve si se le pasa un tipo desconocido? ¿Cómo podrías mejorar esto?
+
+    - Si se le pasa un tipo desconocido igual devuelve una particula, el tema es que esta particula va a tener null los atributos de color, tamaño y velocidad.
+    - Para arreglar esto se me ocurre añadir un else que inicialice estos valores. 
+
+- **Uso de Factory:**
+
+  - Localiza ofApp::setup. ¿Cómo se utiliza la ParticleFactory para poblar el vector particles?
+
+    - Lo que hace es que corre 3 for loop donde llama ParticleFactory::createParticle() pasando como parametro en cada uno de los for un tipo diferente de particula. adicionalmente las subscribe como observers del subject. 
+
+  - Compara esto con la alternativa: ¿Cómo se vería ofApp::setup si no usara la fábrica y tuviera que crear y configurar cada tipo de partícula (star, shooting_star, planet) directamente usando new Particle() y luego ajustando sus propiedades (size, color, velocity)?
+
+    - Tendría que hacer el mismo for, pero tendría que llenar la información del constructor de particula, lo tendría que hacer 3 veces y no sería tan simple como la opción que tenemos acá. es decir, sería más extenso de escribir.
+
+___
