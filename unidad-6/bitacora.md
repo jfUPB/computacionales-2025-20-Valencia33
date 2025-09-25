@@ -47,9 +47,12 @@ ___
 
   - ¿Qué clase es el ConcreteSubject en esta aplicación? ¿Por qué? (Pista: ¿Quién envía las notificaciones?)
 
-    -  
+    -  Las notificaciones las envia ofApp, entonces creooooooo que esa sería el concreteSubject.
 
-  - ¿Qué clase(s) actúan como ConcreteObserver? ¿Por qué? (Pista: ¿Quién recibe y reacciona a las notificaciones?) 
+  - ¿Qué clase(s) actúan como ConcreteObserver? ¿Por qué? (Pista: ¿Quién recibe y reacciona a las notificaciones?)
+
+    - Diría que son todas las particulas que heredan de observer, puesto que a ellas les llega información del cambio en subject y a partir de eso cambian su estado.  
+
 - **Sigue el flujo de notificación:**
   - Localiza el método keyPressed en ofApp.cpp. ¿Qué sucede cuando se presiona la tecla ‘a’? ¿Qué método se llama?
   - Ve al método notify en la clase Subject. ¿Qué hace este método?
@@ -65,12 +68,19 @@ ___
  
  - **2.) Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**
 
-   - 
+   - <img width="967" height="340" alt="image" src="https://github.com/user-attachments/assets/0a3c00c7-b22d-4e2d-80e7-a7ccbb4ae72d" />
+
+   - Con este diagrama es fácil identificar la relación que existe entre los observadores y los sujetos, se ve como ofApp lleva un registro de todas las particulas y los métodos que puede controlar su estado y que información les pasa. Adicionalmente tambien es curiosa la relación de herencia que tiene Particle y ofApp, pues ambos heredan de clases abstractas, por lo que la única forma de estas clases de tener una instancia sería por medio de Particle y ofApp.
+
  
  - **3.) Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
 
-   -   
+   -   <img width="846" height="458" alt="image" src="https://github.com/user-attachments/assets/8da41bf3-373a-460a-8b8e-c59c916cf817" />
+
+   -   En este diagrama se observa claramente el patrón observer, desde que cambia el estado del subject hasta que notifica cada una de las particulas, mostrando su caracteristica principal que es esa relación de uno a muchos.
  
  - **4.) ¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global?**
 
-   - 
+   - Pienso que el flujo de instrucciones de la aplicación es mucho más claro y organizado, sin embargo me parece que es menos eficiente, lo digo más que todo por que un estado en este caso es una clase y encima todos los llamados que debe hacer a otros métodos (como vimos en la unidad pasada) son bastante demandantes, sin embargo si me parece que es un metodo que escala mucho más fácil, en el sentido en el que se controla las partes del código que deben estar atentas a lo que sucede y añadir o quitar reacciones no cuesta para nada puesto que solo están definidas una vez.
+  
+## Actividad 3
