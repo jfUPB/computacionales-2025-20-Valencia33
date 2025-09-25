@@ -124,3 +124,16 @@ ___
     - Tendría que hacer el mismo for, pero tendría que llenar la información del constructor de particula, lo tendría que hacer 3 veces y no sería tan simple como la opción que tenemos acá. es decir, sería más extenso de escribir.
 
 ___
+
+- **1.) Explica con tus propias palabras el propósito del patrón Factory Method (o Simple Factory, en este caso). ¿Qué problema principal aborda en la creación de objetos?**
+
+  - Soluciona varios problemas, en un principio facilita la creación de nuevos objetos, lo otro es que desde la interfaz no se necesita saber como crear una particula, por lo que este proceso elimina la necesidad de tener este conocimiento. En si tener esta opción facilita la creación de particulas nuevas.
+
+- **2.) ¿Qué ventajas aporta el uso de ParticleFactory en ofApp::setup en comparación con instanciar y configurar las partículas directamente allí? Piensa en términos de organización del código (SRP - Single Responsibility Principle), legibilidad y facilidad para añadir nuevos tipos de partículas en el futuro.**
+
+  - Pues le delega la creación de particulas a un método especifico y ahora desde setup() no tenemos que añadir la lógica de instanciación de una particula, por otro lado es un poquito cierto que si es mucho más legible, si y solo si se sabe del proposito de particleFactory(), otra cosa que si me gusta bastante de esta forma de crear objetos es que añadir un tipo nuevo de particula es mucho más fácil, bueno, la integración puede ser mucho más extensa pero es más legible. 
+
+- **3.) Imagina que quieres añadir un nuevo tipo de partícula llamada "black_hole" que tiene tamaño grande, color negro y velocidad muy lenta. Describe los pasos que necesitarías seguir para implementar esto utilizando la ParticleFactory existente. ¿Tendrías que modificar ofApp::setup? ¿Por qué sí o por qué no?**
+
+- **4.) El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.** 
+  
