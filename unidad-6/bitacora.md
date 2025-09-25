@@ -135,5 +135,9 @@ ___
 
 - **3.) Imagina que quieres añadir un nuevo tipo de partícula llamada "black_hole" que tiene tamaño grande, color negro y velocidad muy lenta. Describe los pasos que necesitarías seguir para implementar esto utilizando la ParticleFactory existente. ¿Tendrías que modificar ofApp::setup? ¿Por qué sí o por qué no?**
 
-- **4.) El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.** 
+  - En un principio hay que modificar ParticleFactory::createParticle() donde habrá que añadir un else if que sea if(type=="black_hole") y dentro de este hay que particle->size = ofRandom(10.0f, 12.0f); particle->color = ofColor(20, 20, 20); Ya depues de hacer esto lo único que habría que hacer sería añadir otro for en setup() y dentro de ese for hacer el llamado a  ParticleFactory::createParticle() y subscribirlas al Subject.
+
+- **4.) El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.**
+
+  - Pues en un principio que no toca instanciar la clase que lo contiene para poder hacer llamados, cosa que sería totalmente innecesaria, puesto que es una clase completamente de comportamiento y no requiere tener una instancia, adicionalmente, por poquito que sea tambien es una decisión que nos ahorra memoria.  
   
