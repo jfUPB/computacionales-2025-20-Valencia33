@@ -170,8 +170,16 @@ ___
 - **Transiciones de estado:**
 
   - ¿Cómo cambia una Particle de un estado a otro? ¿Qué método es responsable de gestionar la transición? (Busca setState).
+
+    - basicamente recibe un nuevo estado y cambia el puntero state a ese nuevo que recibió.
+
   - ¿Qué sucede dentro de Particle::setState()? ¿Por qué son importantes los métodos onEnter y onExit de la interfaz State (aunque no todos los estados concretos los usen extensivamente en este ejemplo)? ¿Qué gestionan onEnter y onExit en NormalState?
-  - ¿Qué evento externo (mediado por el patrón Observer, que ya analizaste) desencadena la llamada a setState en una Particle? 
+
+    - me imagino que onEnter será para inicializar un par de variables que se usaran constantemente. OnExit diría que es para limpiar oh resetear las variables que se van a usar.
+
+  - ¿Qué evento externo (mediado por el patrón Observer, que ya analizaste) desencadena la llamada a setState en una Particle?
+
+    - onNotify(), es el que se encarga de llamar este metodo en cada particula y cambiar el estado.
 
 
   
