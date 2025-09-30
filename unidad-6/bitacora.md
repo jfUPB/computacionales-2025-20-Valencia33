@@ -2,6 +2,8 @@
 
 ## Actividad 1
 
+<a name="actividad1"></a>
+
 - **1.) ¿Cómo puedes interactuar con la aplicación?**
 
   - Se puede interactuar por medio de cuatro inputs, s, a, r y n. En ese orden, el comportamiento de cada una sobre las particulas es: Stop congela la posición de las particulas hasta que se presione de nuevo, Attract interpola la posición de las particulas al del mouse, Reppel aleja las particulas del mouse y Normal que se encarga de que su comportamiento sea normal.
@@ -32,6 +34,8 @@
   - Pues el profe en este momento me está explicando justo lo que pasa detrás de camaras, pero me voy a hacer el bobo y voy a decir lo que diría si no supiera. Diría que cada frame se está actualizando la posición de cada particula con respecto a una variable que corresponde al input, y esta es la que define el como cambia en el tiempo la velocidad y posición de las particulas.
 
 ## Actividad 2
+
+<a name="actividad2"></a>
 
 - **Identifica los Roles:**
 
@@ -83,6 +87,8 @@ ___
    - Pienso que el flujo de instrucciones de la aplicación es mucho más claro y organizado, sin embargo me parece que es menos eficiente, lo digo más que todo por que un estado en este caso es una clase y encima todos los llamados que debe hacer a otros métodos (como vimos en la unidad pasada) son bastante demandantes, sin embargo si me parece que es un metodo que escala mucho más fácil, en el sentido en el que se controla las partes del código que deben estar atentas a lo que sucede y añadir o quitar reacciones no cuesta para nada puesto que solo están definidas una vez.
   
 ## Actividad 3
+
+<a name="actividad3"></a>
 
 - **Identifica la Factory:**
 
@@ -143,6 +149,8 @@ ___
 
 ## Actividad 4
 
+<a name="actividad4"></a>
+
 - **Identifica los componentes:**
 
   - ¿Cuál es la clase Context? ¿Qué miembro utiliza para mantener el estado actual?
@@ -182,6 +190,8 @@ ___
     - onNotify(), es el que se encarga de llamar este metodo en cada particula y cambiar el estado.
 
 ## Actividad 5
+
+<a name="actividad5"></a>
 
 -  El código fuente completo de tu proyecto openFrameworks.
 
@@ -590,3 +600,23 @@ void ofApp::keyPressed(int key) {
 		}
     ```
 - En este caso el patrón State es utilizado en ese cambio de estado y el hecho de que cada uno define el comportamiento de las particulas.
+
+## EVIDENCIAS
+
+### MI NOTA: 5
+
+- **Actividad 1**
+	- Realicé todo lo que proponía la actividad.
+ 	- [EVIDENCIA](#actividad-1)
+- **Actividad 2**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+ 	- [EVIDENCIA](#actividad2)
+- **Actividad 3**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad3)
+- **Actividad 4**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad4)
+- **Actividad 5**
+	- Realicé todo lo que proponía la unidad
+	- [EVIDENCIA](#actividad5)
