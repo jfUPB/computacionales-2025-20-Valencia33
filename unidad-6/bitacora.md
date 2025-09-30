@@ -531,7 +531,62 @@ void ofApp::keyPressed(int key) {
 ```
 
 -  Explica cómo usaste el patrón Factory para esta nueva partícula.
+	-  El patrón factory lo implementé durante la creación de las particulas, añadí un nuevo if que chequea por la string "cepheid" e inicializa los valores necesarios, adicionalmente también añadí un for en setup que es el que realmente crea las particulas usando el metodo createParticle().
+   	- ```c++
+   	  Particle * ParticleFactory::createParticle(const std::string & type) {
+		Particle * particle = new Particle();
+
+		if (type == "star") {
+		particle->size = ofRandom(2.0f, 4.0f);
+		particle->color = ofColor(255, 0, 0);
+		} else if (type == "shooting_star") {
+		particle->size = ofRandom(3.0f, 6.0f);
+		particle->color = ofColor(0, 255, 0);
+		particle->velocity *= 3.0f;
+		} else if (type == "planet") {
+		particle->size = ofRandom(5.0f, 8.0f);
+		particle->color = ofColor(0, 0, 255);
+		} else if (type == "cepheid") {
+		particle->size = ofRandom(2.0f, 4.0f);
+		particle->color = ofColor(200, 200, 255);
+		particle->pulseEnabled = true;
+		particle->initialSize = particle->size;
+
+		}
+		return particle;
+		}
+   	  ```
+   	  ```c++
+   	  for (int i = 0; i < 15; ++i) {
+		Particle * p = ParticleFactory::createParticle("cepheid");
+		particles.push_back(p);
+		addObserver(p);
+		}
+   	  ```
 -  Describe cómo implementaste el patrón Observer para esta nueva partícula.
+
+   -   Pues desde su creación las nuevas particulas son "subscritas" al subject al ser añadidas como observers y ya a partir de eso las particulas heredan el metodo onNotify que les permite escuchar los cambios que haya en el subjet, que en este caso serían los inputs que nosotros demos.
+ 	- ```c++
+    	for (int i = 0; i < 15; ++i) {
+			Particle * p = ParticleFactory::createParticle("cepheid");
+			particles.push_back(p);
+			addObserver(p);
+		}
+      ```     
 -  Explica cómo aplicaste el patrón State a esta nueva partícula.
 
-
+	-	El patrón de State es utilizado cuando se llama el metodo OnNotify(), que se encarga de definir que cambio se va hacer llamando otro metodo que no me acuerdo como se llama pero ya voy a mostrar.
+ 	- ```c++
+ 	   void Particle::onNotify(const std::string & event) {
+		if (event == "attract") {
+		setState(new AttractState());
+		} else if (event == "repel") {
+		setState(new RepelState());
+		} else if (event == "stop") {
+		setState(new StopState());
+		} else if (event == "normal") {
+		setState(new NormalState());
+		}
+		}
+    ```
+- En este caso el patrón State es utilizado en ese cambio de estado y el hecho de que cada uno define el comportamiento de las particulas.
