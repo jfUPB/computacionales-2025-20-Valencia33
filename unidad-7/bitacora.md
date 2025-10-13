@@ -7,7 +7,7 @@
 > Aplicar conocimientos: reforzarás tu aprendizaje mediante la solución de un problema sencillo.
 
 
-## Actividad 01
+## Actividad 1
 
 **Ejemplo simple de un triángulo en OpenGL:**
 
@@ -219,3 +219,218 @@ ni idea si este es el output:
 - 3.) Explica el proceso de normalización a coordenadas de dispositivo (NDC) y cómo se relaciona con el sistema de coordenadas de OpenGL.
 
   - lo que pasa es que openGL trabaja con un espacio q va de -1 a 1, por esto para las coordenadas de los vertices del triangulo se debe aplicar una transformación adicional que es x/y = x/y * 2 + 1, de esa forma se convierten los vertices a ndc.
+
+## Actividad 6
+
+- **1.) Describe brevemente los cambios que realizaste en el código C++ (dónde obtienes el tiempo, cómo y dónde actualizas el uniform).**
+
+  - el tiempo lo obtengo con la función que el profe mencionó y lo actualizo en cada iteración del loop principal. ya en el shader lo que hago es que utilizo ese uniform en cada parámetro que recibe el vec4 de FragColor.
+
+  - exactamente los cambios que hice fueron:
+
+    - <img width="462" height="82" alt="image" src="https://github.com/user-attachments/assets/68600f25-0952-4850-8aa2-b482212bf063" />
+
+    - <img width="536" height="141" alt="image" src="https://github.com/user-attachments/assets/f510b11a-9d59-4a4c-bfc2-eb382c213967" />
+
+    - <img width="547" height="421" alt="image" src="https://github.com/user-attachments/assets/3d2bf02f-b90c-4c32-b19b-8cc05e97fecd" />
+
+    - Si quería que se moviera con el mouse pero no que cogiera el color de ahí, entonces no más fue reemplazarlo.
+
+- **2.) Pega el código modificado de tu fragment shader.**
+
+```c++
+#include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+
+const char* vertexShaderSrc = R"glsl(
+    #version 460 core
+    layout(location = 0) in vec3 aPos;
+    uniform vec2 offset;
+
+    void main() {
+        vec3 newPos = aPos;
+        newPos.x += offset.x;
+        newPos.y += offset.y;
+        gl_Position = vec4(newPos, 1.0);
+    }
+)glsl";
+
+const char* fragmentShaderSrc = R"glsl(
+    #version 460 core
+    out vec4 FragColor;
+    uniform float timeValue;
+
+    void main() {
+        FragColor = vec4(cos(timeValue),sin(timeValue),cos(timeValue),1.0);
+    }
+)glsl";
+
+unsigned int VAO, VBO;
+unsigned int shaderProg;
+
+unsigned int buildShaderProgram(const char* vSrc, const char* fSrc) {
+    int success;
+    char log[512];
+
+    unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vs, 1, &vSrc, nullptr);
+    glCompileShader(vs);
+    glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vs, 512, nullptr, log);
+        std::cerr << "ERROR VERTEX SHADER:\n" << log << "\n";
+    }
+
+    unsigned int fs = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fs, 1, &fSrc, nullptr);
+    glCompileShader(fs);
+    glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fs, 512, nullptr, log);
+        std::cerr << "ERROR FRAGMENT SHADER:\n" << log << "\n";
+    }
+
+    unsigned int prog = glCreateProgram();
+    glAttachShader(prog, vs);
+    glAttachShader(prog, fs);
+    glLinkProgram(prog);
+    glGetProgramiv(prog, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(prog, 512, nullptr, log);
+        std::cerr << "ERROR LINKING PROGRAM:\n" << log << "\n";
+    }
+
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+    return prog;
+}
+
+void setupTriangle() {
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f,
+         0.5f, -0.5f, 0.0f,
+         0.0f,  0.5f, 0.0f
+    };
+
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+}
+
+int main() {
+    if (!glfwInit()) {
+        std::cerr << "Fallo al inicializar GLFW\n";
+        return -1;
+    }
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* mainWindow = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Ventana", nullptr, nullptr);
+    if (!mainWindow) {
+        std::cerr << "Error creando ventana\n";
+        glfwTerminate();
+        return -1;
+    }
+
+    glfwMakeContextCurrent(mainWindow);
+    glfwSetFramebufferSizeCallback(mainWindow, framebuffer_size_callback);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Fallo al cargar GLAD\n";
+        return -1;
+    }
+
+    glfwSwapInterval(1);
+
+    shaderProg = buildShaderProgram(vertexShaderSrc, fragmentShaderSrc);
+    setupTriangle();
+
+    glUseProgram(shaderProg);
+    int offsetLocation = glGetUniformLocation(shaderProg, "offset");
+    int timeLocation = glGetUniformLocation(shaderProg, "timeValue");
+    int colorLocation = glGetUniformLocation(shaderProg, "ourColor");
+
+    while (!glfwWindowShouldClose(mainWindow)) {
+        glfwPollEvents();
+        processInput(mainWindow);
+
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        double xpos, ypos;
+        glfwGetCursorPos(mainWindow, &xpos, &ypos);
+
+        float x = static_cast<float>(xpos) / static_cast<float>(SCR_WIDTH);
+        if (x < 0) x = 0;
+        if (x > 1) x = 1;
+
+        float y = static_cast<float>(ypos) / static_cast<float>(SCR_HEIGHT);
+        if (y < 0) y = 0;
+        if (y > 1) y = 1;
+
+        double timeValue = glfwGetTime();
+        glUniform1f(timeLocation, static_cast<float>(timeValue));
+        glUniform2f(offsetLocation, x * 2.0f - 1.0f, 1.0f - y * 2.0f);
+
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glfwSwapBuffers(mainWindow);
+    }
+
+    glfwMakeContextCurrent(mainWindow);
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProg);
+
+    glfwDestroyWindow(mainWindow);
+    glfwTerminate();
+    return 0;
+}
+```
+
+- **3.) Explica cómo usaste la función de tiempo (sin, cos, u otra) para lograr el efecto de cambio de color cíclico. ¿Qué rango de valores produce tu cálculo y cómo afecta eso al color final?**
+
+  - en este punto si creo que fuí bastante simple, no más de los 3 parámetros que recibe como rgb pasé un coseno y seno que tenían como ángulo el tiempo, entonces realmente no hace gran cosa más allá de ir bastante lento en el cambio de colores, para arreglar esto podría multiplicar el cos y sen pero ya pegué el código entonces no lo pienso hacer.
+ 
+  - <img width="615" height="71" alt="image" src="https://github.com/user-attachments/assets/411a3087-6d3c-4c3d-b4ee-a37a7ef4a133" />
+
+  - lo que si vi que pasaba que me parecio muy charro es que como no hay ningún tipo de offset entonces los colores están limitados a verde y morado, para arreglar esto se le podría sumar, que este si lo voy a hacer para las fotitos. 
+
+- **4.) Incluye una captura de pantalla o UN ENLACE a un video mostrando el resultado del triángulo con color cambiante.**
+
+  - <img width="792" height="589" alt="image" src="https://github.com/user-attachments/assets/5a7d3cd2-c292-4b27-bb24-0363c42aa6e9" />
+
+  - <img width="793" height="594" alt="image" src="https://github.com/user-attachments/assets/8c1a6cbd-8692-42ad-933c-78ddf9e59a1a" />
+
+  - <img width="795" height="586" alt="image" src="https://github.com/user-attachments/assets/cf9b3050-439a-4571-ab24-66d7aa90861b" />
+
+  - <img width="791" height="582" alt="image" src="https://github.com/user-attachments/assets/4ad3d45f-e7d5-4df4-9860-d92958fe8cd1" />
+
+  - <img width="789" height="588" alt="image" src="https://github.com/user-attachments/assets/890e1825-3961-4050-9de8-8a50bbbcdce4" />
+
+- **5.)Reflexión: ¿Qué otros efectos visuales simples podrías lograr usando el tiempo como uniform? Piensa en la posición, el tamaño o la rotación (aunque no hemos visto rotaciones formalmente, ¡intuitivamente podrías intentarlo!). Anota al menos una idea.**
+
+  - LA POSICIÓN DE UN VERTICE, no tengo ni idea de si se podria, o tendría que pensar como tal en el fragmento, pero pienso que algo así se vería divertido y en base a la posición que tenga el vertice asignar un color.  
+
+
