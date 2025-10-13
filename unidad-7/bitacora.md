@@ -197,4 +197,25 @@ ni idea si este es el output:
 
 <img width="409" height="442" alt="image" src="https://github.com/user-attachments/assets/767ba5dc-00fa-4842-914c-f0e674ae0241" />
 
+## Actividad 5
 
+- 1.) Incluye una captura de pantalla del triángulo interactivo funcionando en tu máquina.
+
+  - <img width="803" height="606" alt="image" src="https://github.com/user-attachments/assets/8e86acd7-3c7f-44c9-8ec2-4071f8a24473" />
+
+  - <img width="799" height="627" alt="image" src="https://github.com/user-attachments/assets/d76e6d5f-9d03-4ec4-b769-ed94749198de" />
+
+  - <img width="799" height="599" alt="image" src="https://github.com/user-attachments/assets/4dc2430a-ecc5-44b2-b0d1-3945d0e7564c" />
+
+  - <img width="794" height="608" alt="image" src="https://github.com/user-attachments/assets/cd456947-5423-41dd-95cd-c797c74e448f" />
+
+- 2.) Explica el proceso de normalización de las coordenadas del mouse y cómo se relaciona con el sistema de coordenadas de OpenGL.
+
+  - <img width="483" height="128" alt="image" src="https://github.com/user-attachments/assets/1e118f98-3e61-43cd-95fa-114d2f3a7e7e" />
+
+  - Lo que hace es que coge la posición del mouse dentro de la pantalla y la divide por width o height, dependeiendo del caso, esto lo que hace es que normaliza x para que solo pueda tomar un valor de 0 a 1.
+  - se relaciona con el sistema de coordenadas de openGL por que este es un sist coordenado normalizado.
+
+- 3.) Explica el proceso de normalización a coordenadas de dispositivo (NDC) y cómo se relaciona con el sistema de coordenadas de OpenGL.
+
+  - lo que pasa es que openGL trabaja con un espacio q va de -1 a 1, por esto para las coordenadas de los vertices del triangulo se debe aplicar una transformación adicional que es x/y = x/y * 2 + 1, de esa forma se convierten los vertices a ndc.
