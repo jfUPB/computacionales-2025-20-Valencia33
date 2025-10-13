@@ -26,7 +26,7 @@
   - ¿Que es y para que sirve GLFW?
   - ¿Que es el framebuffer?
 
-## Actividad 02
+## Actividad 2
 
 ### Orientación y primer vistazo al entorno gráfico
 
@@ -433,4 +433,25 @@ int main() {
 
   - LA POSICIÓN DE UN VERTICE, no tengo ni idea de si se podria, o tendría que pensar como tal en el fragmento, pero pienso que algo así se vería divertido y en base a la posición que tenga el vertice asignar un color.  
 
+# EVIDENCIAS
 
+## MI NOTA: 5
+
+- **Actividad 1**
+	- Realicé todo lo que proponía la actividad.
+ 	- [EVIDENCIA](#actividad-1)
+- **Actividad 2**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+ 	- [EVIDENCIA](#actividad-2)
+- **Actividad 3**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-3)
+- **Actividad 4**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-4)
+- **Actividad 5**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-5)
+- **Actividad 6**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-6)
