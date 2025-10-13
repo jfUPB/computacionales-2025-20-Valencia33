@@ -128,9 +128,73 @@ ___
   - Al parecer era el openGL que se utilizaba en equipos más viejos, aunque por lo que vi cuando busqué la principal diferencia es la facilidad que tiene openGL moderno de escribir e interpretar shaders, cosa que el otro también puede hacer pero le cuesta más 
 
 - ¿Qué es el shader program? ¿Por qué es importante en OpenGL moderno?
+
+  - Ese es el programa que indica como se van a dibujar los vertices, es importante por que en últimas es lo que dicta la apariencia al final. 
+
 - Trata de revisar el código setupTriangle(), intuitivamente ¿Qué crees que hace? ¿Qué crees que es el VAO y el VBO?
+
+  - leyendo un blogsito ya me hice spoiler de lo que era vertex array object y un vertex buffer object, entonces juzgando por sus nombres diría que un vao guarda los vertices, y el vbo guarda como la apariencia de estos vertices que guarda. 
+
 - En el ciclo principal (game loop) de OpenGL, notaste que en cada frame (cuadro) le decimos a openGL que use el shader program y el VAO. Si le indicas esto antes del game loop ¿Será necesario seguirlo haciendo en cada loop? Si no es necesario ¿En qué casos crees que esto puede ser útil?
+
+  -  Yo diría que no es necesario, siento que tendría sus complicaciones si no se hace, en el sentido en el que solo utilizaría la versión del programa que declaramos al principio, entonces diría que es util en casos donde sabemos que vamos trabajar siempre con la misma información.
+
 - Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)
+
+  - Es importante por que de esa forma se muestra lo que se ha dibujado cada frame, si no lo llamo, entonces no habrá dibujado nada y no se verá nada. 
  
- 
+## Actividad 4
+
+### ¿Cuál es la diferencia entre una CPU y una GPU?
+
+La diferencia es que la CPU realiza todas las actividades para renderizar paso a paso. A diferencia de la CPU, la GPU dibuja todo antes de mostrarlo, lo que en últimas es más rápido y organizado.
+
+- 1.) ¿Cuáles son los tres pasos claves del pipeline de OpenGL? Explica en tus propias palabras cuál es el objetivo de cada paso.
+
+  - vertex shading se encarga de coger la posición 3d de TODOS los vertices que puede ver la cámara y proyectarlos en un plano 2d (cameraview), la rasterización es la parte del proceso donde se define que pixeles de la pantalla le corresponden a que triangulo, aplicando las texturas, por último en fragment shading lo que se hace es que se aplican materiales y luces, es decir calcula los rayos de luz y sombras.
+
+- 2.) La gran novedad que introduce OpenGL moderno es el pipeline programable. ¿Qué significa esto? ¿Qué diferencia hay entre el pipeline fijo y el programable? ¿Qué ventajas le ves a esto? y si el pipeline es programable, ¿Qué tengo que programar?
+
+  - Esto significa que la apariencia de los vcertices cuando se dibujam ya no se hace con funciones preestablecidad, sino que se necesitan shaders para hacer esto, lo que permite mucha más flexibilidad y control sobre el resultado final.
+
+- 3.) Si fueras a describir el proceso de rasterización ¿Qué dirías?
+
+  - Diría que es una especie de traducción, de coordenadas x,y y z en un espacio 3D a pixeles en la pantalla 2D
+
+- 4.) ¿Qué son los fragmentos? ¿Es lo mismo un fragmento que un pixel? ¿Por qué?
+
+  - no no, no son lo mismo, un pixel es el resultado final, pero los fragmentos son como esas porciones en la pantalla a lo que se le van aplicando cosas
+
+- 5.) Explica qué problema resuelve el Z-buffer y ¿Qué es el depth test?
+
+  - el z-buffer lo que hace es que decide QUE se renderiza primer, es genial por que de esa forma se evita que se dibujen cosas que no se van a haber y que clipeen entre ellas.
+
+- 6.) ¿Por qué se presenta el problema de la aliasing? ¿Qué es el anti-aliasing?
+
+  - como me lo imagino es que se intenta dibujar una linea que está compuesto por puntos infinitos encima de una cuadricula, lo que sucede es que el cambio en x y y en la cuadricula es muy muy obvio, entonces se ve raro, se ve pixelado. el antialising lo que hace es que "difumina" esos bordes de tal forma que no se vea pixelado sino un poco más suavizado.
+
+- 7.) ¿Qué relación hay entre la iluminación y el fragment shader? Siempre es necesario tener en cuenta la iluminación en un fragment shader? o puedo hacer un fragment shader sin iluminación? Explica que implicaciones tiene esto.
+
+  - la relación que existe es que el fragment sahder toma en consideración la iluminación, la orientación de las cosas, su material y la cámara antes de dibujar los pixeles finales. Y no, no creo que sea necesario más que todo por que lo he visto en blender pero no sé si ese caso aplique.
+
+- 8.) ¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?
+
+  -  pues me imagino que mucho más trabajo, en el sentido en el que tendrá que calcular y recorrer el proceso de luz, orientación, material, cámara por cada fuente de luz.
+
+**Escribe un resumen en tus propias palabras de lo que se necesita para dibujar un triángulo en OpenGL.**
+
+BUneo lo primero que se necesita para dibujar un triangulo es la información de sus vertices, de esta forma se puede crear unos vertices que hay que enviarlos a un vbo, que como dije antes es lo que contiene las caracteristicas de cada vertices, para estoy igual hay que decirle varias cosas, primero, a que tipo de buffer, que tamaño tiene la info que le vamos a enviar, la info y si es constante o dinámica. Por último toca habilitar el atributo de vertice, este cosito lo que hace es que coge los vertices que le pasemos y los convierte como a sets de información ligados a un ID, esto es para que el shader los pueda manipular despues, ya posterior a esto se le aplican los shaders y tales pero eso lo digo en la siguiente pregunta.
+
+**Escribe un resumen en tus propias palabras de lo que necesitas para poder usar un shader en OpenGL.**
+
+Para poder usarlos hay que crear un objeto que tiene un ID, este objeto sera el programa de los shaders  la cosa es que aún no está activo, se debe de activar, esto se hace indicandole a NUESTRO programa que programa de shader debe utilizar para dibujar cada cosa, entonces ya cuando se llama un método para dibujar alguna cosita el programa ya sabe cual es su ruta por la GPU.
+
+**Implementa el código anterior en tu máquina y captura pantalla del resultado. Pero antes de hacerlo trata de predecir qué va a pasar.**
+
+Pues algo es seguro y es que se van a dibujar 3 triangulos, cada uno con un shader diferente, no tengo NI IDEA que hace cada shader, creo que no más lo mueve pq en niguna parte mueve lo de frag color pero sinceramente no sé.
+
+ni idea si este es el output:
+
+<img width="409" height="442" alt="image" src="https://github.com/user-attachments/assets/767ba5dc-00fa-4842-914c-f0e674ae0241" />
+
 
