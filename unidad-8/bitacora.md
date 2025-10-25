@@ -160,7 +160,29 @@ es un poco lento pero se ve bonito, igual el tiempo de calculo está siempre en 
 
   - <img width="954" height="751" alt="image" src="https://github.com/user-attachments/assets/6ec4e708-793d-4985-83b4-608994aebbf6" />
 
+  - <img width="1014" height="752" alt="image" src="https://github.com/user-attachments/assets/d3265736-be3c-40ae-8500-fa7b10ab6ce0" />
+
+
 - ¿Encontraste algún desafío particular al implementar la interacción o modificar el cálculo?
 
   - No realmente, es bastante intuitiva la implementación una vez se entiende la lógica detrás de como se calcula y se dibuja, en cuanto a lo del mouse me hubiera quedado un rato ahí pero el profe ya había explicado algo similar en físicos interactivos entonces tampoco fue un problema. 
 
+# EVIDENCIAS
+
+## MI NOTA: 5
+
+- **Actividad 1**
+	- Realicé todo lo que proponía la actividad.
+ 	- [EVIDENCIA](#actividad-1)
+- **Actividad 2**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+ 	- [EVIDENCIA](#actividad-2)
+- **Actividad 3**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-3)
+- **Actividad 4**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-4)
+- **Actividad 5**
+	- Realicé todo lo que proponía la unidad, incluso aquellas preguntas que no eran obligatorias.
+	- [EVIDENCIA](#actividad-5)
