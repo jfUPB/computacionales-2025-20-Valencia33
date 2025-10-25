@@ -63,5 +63,45 @@ Mi hipotesis es que va a ser igual o más lento que lo que ya es, lo digo por qu
 
 juzgando por la diferencia de tiempos CREO que no ignora el hecho de que numThreads sea >16, sino que ya lo que está pasando es que si hay una condición de carrera con aquellos nuevos que utiliza y por eso es tan volatil.
 
+## Actividad 4
 
+- **1.) ¿Cuál es la estructura de datos principal que contiene la información de todos los boids y que es accedida por múltiples hilos (el hilo principal para dibujar, el hilo trabajador para actualizar)?**
+
+  -  Dentro de flock está el vector que contiene todos los boids
+  -  <img width="246" height="259" alt="image" src="https://github.com/user-attachments/assets/c3ddf288-da81-4f22-8f33-f06233a945df" />
+
+- **2.) Observa la función Flock::threadedFunction() donde el hilo trabajador calcula el movimiento. ¿Qué operaciones realizan sobre el vector de boids compartido?**
+
+  - <img width="313" height="84" alt="image" src="https://github.com/user-attachments/assets/dcd90758-6f02-4555-bacc-3fb188b8c62f" />
+  - <img width="415" height="421" alt="image" src="https://github.com/user-attachments/assets/b412ccc4-53a5-404c-aaab-ab03c65ee748" />
+
+  - Observa la función ofApp::draw(). ¿Qué operación realiza sobre el vector compartido?
+
+    - <img width="599" height="206" alt="image" src="https://github.com/user-attachments/assets/12b8f7e4-4352-4367-8777-a48f2cb77ba3" />
+    - <img width="395" height="217" alt="image" src="https://github.com/user-attachments/assets/805c3f0c-b306-420e-bc1d-4cc621c7e4a1" />
+
+  - Observa Flock::addBoid() y ofApp::mouseDragged(). ¿Qué operación realizan?
+
+    - <img width="261" height="85" alt="image" src="https://github.com/user-attachments/assets/98427eca-8571-4175-ab05-1c3056d7a8f2" />
+    - <img width="618" height="95" alt="image" src="https://github.com/user-attachments/assets/20355111-fd47-4b8b-b6f3-da2b76d42795" />
+
+    ni idea como funciona ese código pero ahí explica que mete el nuevo elemento al final del todo.
+
+- **3.) Describe un escenario específico y concreto donde la falta de sincronización podría causar un problema. Por ejemplo:
+
+> “El Hilo X está recorriendo el vector para calcular la separación (leyendo posiciones). Al mismo tiempo, el Hilo Y (llamado desde mouseDragged) intenta añadir un nuevo boid al final del vector. ¿Qué podría pasarle al iterador del Hilo X o al tamaño del vector que está usando?”
+
+  - Pues desde un principio me pareció raro los llamados de update y draw, en update se están modificando la velocidad y la posición pero en draw se está leyendo la posición, lo que podría dar a lugar a una leve desincronización, aunque igual creería que no sería la gran cosa.
+
+- **4.) Localiza todas las llamadas a lock() y unlock() dentro de la clase Flock (o donde se acceda al vector compartido).**
+
+  - <img width="600" height="546" alt="image" src="https://github.com/user-attachments/assets/742b2175-ec0a-49cb-9f18-d2e983c236b1" />
+ 
+> Justificación: para uno de los escenarios problemáticos que describiste arriba, explica cómo las llamadas a lock()/unlock() en las secciones de código relevantes evitan que ocurra ese problema específico.
+
+  - Pues evitan que draw lea la posición cuando se está actualizando, de esa forma el dibujo en la pantalla y su posición real son las mismas.   
+
+- **5.) Aunque los locks aseguran la correctitud, ¿Puedes intuir por qué tener muchos hilos esperando para adquirir un lock sobre el mismo vector (alta contención) podría limitar el beneficio de rendimiento del paralelismo en este caso? Justifica tu respuesta.**
+
+  - Pues pasa que los hilos se quedan esperando a leer el vector, lo que si o si hace que el programa sea lento.
 
