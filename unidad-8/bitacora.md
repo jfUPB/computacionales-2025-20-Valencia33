@@ -119,3 +119,48 @@ __
 
 ## Actividad 5
 
+cogí el código que no era y lo hice en el secuencial
+
+<img width="237" height="231" alt="image" src="https://github.com/user-attachments/assets/e86b597c-d766-430d-a457-12fde0b616fd" />
+
+es un poco lento pero se ve bonito, igual el tiempo de calculo está siempre en 0.2 y 0.1 segundos.
+
+- Pega la parte clave de tu función modificada que calcula el píxel para el conjunto de Julia. Recuerda utilizar un bloque cpp.
+
+  - <img width="480" height="216" alt="image" src="https://github.com/user-attachments/assets/d5d6bc33-29c3-4d0e-899f-241ccac1206e" />
+
+- Muestra cómo mapeaste la posición del mouse a la constante k.
+
+  - <img width="418" height="170" alt="image" src="https://github.com/user-attachments/assets/5a7c5e32-2462-47bb-9930-f662f2b5ac52" />
+
+
+- Describe brevemente cómo reutilizaste la estructura de hilos de la versión Mandelbrot. ¿Tuviste que cambiar mucho esa parte?
+
+  - No la tuve que cambiar en lo absoluto, no sé si eso sea bueno o malo, lo cierto es que no más llamé startCalculation() como hacian los otros dos triggers y esperaba que eso fuera suficiente.
+
+- ¿Cómo te aseguraste de que la imagen se recalculara cuando el mouse se movía?
+
+  - <img width="456" height="185" alt="image" src="https://github.com/user-attachments/assets/69c0f0b3-0b5a-4d33-bc27-da5efc5cc169" />
+
+- Incluye al menos dos capturas de pantalla que muestren diferentes fractales de Julia generados al mover el mouse en tu aplicación.
+
+  - Iba a buscar uno bien bacano pa poner pero vi esto entonces voy a intentar que se vea así, que genial.
+  - <img width="803" height="672" alt="image" src="https://github.com/user-attachments/assets/a3996f80-7a19-440a-9827-e7291238e37d" />
+
+  - <img width="1016" height="760" alt="image" src="https://github.com/user-attachments/assets/91b268bd-2266-409a-b1d3-c347f2e07567" />
+
+  - <img width="553" height="261" alt="image" src="https://github.com/user-attachments/assets/eb682d36-0c33-4d4c-bf57-414ee957f861" />
+
+  Entonces para z^4 sería lo siguiente: z = x + iy, entonces z^4 = (x + iy)^4 que es lo mismo que (x + iy)^2 * (x + iy)^2 que es como lo teniamos al principio y eso al final queda que x^4 + 4(x^3)yi + 6(x^2)(y^2 * i^2) + 4x(y^3* i^3) + (y^4* i^4) y ya para encontrar la parte real sería entonces volver a organizarlo de la forma a + bi y quedaría así: (x^4 - 6+x^2+y^2 + y^4) + i(-4x^3y + 4xy^3) y se supone que si pongo esos dos terminos como zx y zy quedaría bonito.
+
+  - <img width="1020" height="767" alt="image" src="https://github.com/user-attachments/assets/b00da6ea-0084-423f-a027-3fb914a2cdcd" />
+  ESOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  - <img width="1006" height="734" alt="image" src="https://github.com/user-attachments/assets/728e2c7a-d6d0-436a-b74f-60aa03f5ab31" />
+
+  - <img width="954" height="751" alt="image" src="https://github.com/user-attachments/assets/6ec4e708-793d-4985-83b4-608994aebbf6" />
+
+- ¿Encontraste algún desafío particular al implementar la interacción o modificar el cálculo?
+
+  - No realmente, es bastante intuitiva la implementación una vez se entiende la lógica detrás de como se calcula y se dibuja, en cuanto a lo del mouse me hubiera quedado un rato ahí pero el profe ya había explicado algo similar en físicos interactivos entonces tampoco fue un problema. 
+
