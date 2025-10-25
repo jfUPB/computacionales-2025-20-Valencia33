@@ -154,7 +154,6 @@ es un poco lento pero se ve bonito, igual el tiempo de calculo está siempre en 
   Entonces para z^4 sería lo siguiente: z = x + iy, entonces z^4 = (x + iy)^4 que es lo mismo que (x + iy)^2 * (x + iy)^2 que es como lo teniamos al principio y eso al final queda que x^4 + 4(x^3)yi + 6(x^2)(y^2 * i^2) + 4x(y^3* i^3) + (y^4* i^4) y ya para encontrar la parte real sería entonces volver a organizarlo de la forma a + bi y quedaría así: (x^4 - 6+x^2+y^2 + y^4) + i(-4x^3y + 4xy^3) y se supone que si pongo esos dos terminos como zx y zy quedaría bonito.
 
   - <img width="1020" height="767" alt="image" src="https://github.com/user-attachments/assets/b00da6ea-0084-423f-a027-3fb914a2cdcd" />
-  ESOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   - <img width="1006" height="734" alt="image" src="https://github.com/user-attachments/assets/728e2c7a-d6d0-436a-b74f-60aa03f5ab31" />
 
