@@ -105,3 +105,17 @@ juzgando por la diferencia de tiempos CREO que no ignora el hecho de que numThre
 
   - Pues pasa que los hilos se quedan esperando a leer el vector, lo que si o si hace que el programa sea lento.
 
+___
+
+¿Qué pasaría si tuviéramos varios hilos que calculan el movimiento de los boids? ¿Cómo podrías implementar esto? ¿Qué problemas crees que podrían surgir? ¿Cómo podrías solucionarlos?
+
+  - Pues supongo que se podrían hacer varios vectores de boids y asignarle a cada uno un hilo. Un problema grande de este código creo que es que para definir su comportamiento tiene en cuenta TODOS los boids, cuando solo debe tener en cuenta los que están cerca. Mi solución no funcionaría precisamente por eso, por que debe tener en cuenta la posición de todos. Lo otro que creo que sería útil sería que cada hilo se encargara como de una porción del espacio, así solo calcula los boids que estén ese lugar y ya.
+  - De todas formas digamos hay un boid just afuera de ese espacio y uno adentro necesita modificar su posición, igual ahí se podría dar una lectura incorrecta del error.
+  - No tengo ninguna solución, cualquier cosa creo que si se va a actualizar la posición de un boid no basta con solo ese espacio en el que está sino los que tenga alrededor, pero no sé hasta que punto eso sea más complejo.
+
+__
+
+# APPLY
+
+## Actividad 5
+
